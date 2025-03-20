@@ -38,7 +38,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
       // Set delay for end call button
       const timer = setTimeout(() => {
         setCanEndCall(true)
-      }, 3500)
+      }, 4000)
 
       return () => clearTimeout(timer)
     } else {
