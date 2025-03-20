@@ -21,7 +21,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu, Home, MessageSquare } from 'lucide-react'
+import { Menu, MessageSquare, User } from 'lucide-react'
 
 export function TopNav() {
   const pathname = usePathname()
@@ -43,7 +43,7 @@ export function TopNav() {
             />
           </div>
           <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Voice AI
+            Peter Wei
           </span>
         </div>
 
@@ -51,19 +51,6 @@ export function TopNav() {
         <div className="hidden md:flex md:flex-1 md:justify-start md:ml-8">
           <NavigationMenu>
             <NavigationMenuList className="gap-2">
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50",
-                      pathname === "/" && "bg-accent text-accent-foreground shadow-sm"
-                    )}
-                  >
-                    <Home className="mr-2 h-4 w-4" />
-                    Home
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/chat" legacyBehavior passHref>
                   <NavigationMenuLink
@@ -73,7 +60,20 @@ export function TopNav() {
                     )}
                   >
                     <MessageSquare className="mr-2 h-4 w-4" />
-                    Voice Assistant
+                    Chat with Peter
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50",
+                      pathname === "/" && "bg-accent text-accent-foreground shadow-sm"
+                    )}
+                  >
+                    <User className="mr-2 h-4 w-4" />
+                    About Me
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -104,18 +104,6 @@ export function TopNav() {
                 </SheetHeader>
                 <div className="mt-6">
                   <nav className="space-y-2">
-                    <Link href="/" legacyBehavior passHref>
-                      <Button
-                        variant={pathname === "/" ? "secondary" : "ghost"}
-                        className={cn(
-                          "w-full justify-start transition-all",
-                          pathname === "/" && "bg-secondary shadow-sm"
-                        )}
-                      >
-                        <Home className="mr-2 h-4 w-4" />
-                        Home
-                      </Button>
-                    </Link>
                     <Link href="/chat" legacyBehavior passHref>
                       <Button
                         variant={pathname === "/chat" ? "secondary" : "ghost"}
@@ -125,7 +113,19 @@ export function TopNav() {
                         )}
                       >
                         <MessageSquare className="mr-2 h-4 w-4" />
-                        Voice Assistant
+                        Chat with Peter
+                      </Button>
+                    </Link>
+                    <Link href="/" legacyBehavior passHref>
+                      <Button
+                        variant={pathname === "/" ? "secondary" : "ghost"}
+                        className={cn(
+                          "w-full justify-start transition-all",
+                          pathname === "/" && "bg-secondary shadow-sm"
+                        )}
+                      >
+                        <User className="mr-2 h-4 w-4" />
+                        About Me
                       </Button>
                     </Link>
                   </nav>
