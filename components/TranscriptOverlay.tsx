@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { PhoneOff, Mic } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { useEffect, useState } from "react"
 
 interface Message {
   id: string
@@ -19,6 +21,32 @@ interface TranscriptOverlayProps {
 }
 
 export default function TranscriptOverlay({ messages, onEndCall, isCallActive }: TranscriptOverlayProps) {
+  const { toast } = useToast()
+  const [canEndCall, setCanEndCall] = useState(false)
+
+  useEffect(() => {
+    if (isCallActive) {
+      // Reset canEndCall to false when call starts
+      setCanEndCall(false)
+      
+      // Show toast when call starts
+      toast({
+        title: "Peter is coming",
+        description: "Please wait while Peter joins the conversation",
+      })
+
+      // Set delay for end call button
+      const timer = setTimeout(() => {
+        setCanEndCall(true)
+      }, 3500)
+
+      return () => clearTimeout(timer)
+    } else {
+      // Reset canEndCall when call ends
+      setCanEndCall(false)
+    }
+  }, [isCallActive, toast])
+
   if (!isCallActive) return null;
 
   // Get the latest message
@@ -50,6 +78,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
               variant="destructive"
               size="lg"
               className="rounded-full px-6"
+              disabled={!canEndCall}
             >
               <PhoneOff className="mr-2 h-5 w-5" />
               End Call
