@@ -6,6 +6,13 @@ import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 interface MobileNavProps {
   activeTab: string;
@@ -13,7 +20,7 @@ interface MobileNavProps {
 }
 
 export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   
   return (
     <div className="md:hidden">
@@ -32,57 +39,53 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
             <h1 className="text-lg font-bold text-primary">Voice AI</h1>
           </div>
           
-          <Button 
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <Menu size={24} />
-          </Button>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu size={24} />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <div className="mt-6">
+                <nav className="space-y-2">
+                  <Button
+                    onClick={() => {
+                      onTabChange('home')
+                      setOpen(false)
+                    }}
+                    variant={activeTab === 'home' ? 'secondary' : 'ghost'}
+                    className={cn(
+                      "w-full justify-start",
+                      activeTab === 'home' && "bg-secondary"
+                    )}
+                  >
+                    <Home size={18} className="mr-2" />
+                    <span>Home</span>
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      onTabChange('assistant')
+                      setOpen(false)
+                    }}
+                    variant={activeTab === 'assistant' ? 'secondary' : 'ghost'}
+                    className={cn(
+                      "w-full justify-start",
+                      activeTab === 'assistant' && "bg-secondary"
+                    )}
+                  >
+                    <MessageSquare size={18} className="mr-2" />
+                    <span>Voice Assistant</span>
+                  </Button>
+                </nav>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </Card>
-      
-      {/* Dropdown Menu */}
-      {isMenuOpen && (
-        <Card className="mx-4 mb-4 p-2 border-none shadow-none">
-          <nav>
-            <ul className="space-y-1">
-              <li>
-                <Button
-                  onClick={() => {
-                    onTabChange('home')
-                    setIsMenuOpen(false)
-                  }}
-                  variant={activeTab === 'home' ? 'secondary' : 'ghost'}
-                  className={cn(
-                    "w-full justify-start",
-                    activeTab === 'home' && "bg-secondary"
-                  )}
-                >
-                  <Home size={18} className="mr-2" />
-                  <span>Home</span>
-                </Button>
-              </li>
-              <li>
-                <Button
-                  onClick={() => {
-                    onTabChange('assistant')
-                    setIsMenuOpen(false)
-                  }}
-                  variant={activeTab === 'assistant' ? 'secondary' : 'ghost'}
-                  className={cn(
-                    "w-full justify-start",
-                    activeTab === 'assistant' && "bg-secondary"
-                  )}
-                >
-                  <MessageSquare size={18} className="mr-2" />
-                  <span>Voice Assistant</span>
-                </Button>
-              </li>
-            </ul>
-          </nav>
-        </Card>
-      )}
     </div>
   )
 } 
