@@ -26,20 +26,20 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
   const isParentaSpeaking = latestMessage?.role === 'assistant' && !latestMessage?.isComplete;
 
   return (
-    <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50 p-4">
-      <Card className="w-full max-w-lg bg-white/95 backdrop-blur-sm shadow-lg">
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <Card className="w-full max-w-lg bg-background/95 backdrop-blur-sm shadow-lg">
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                <Mic className="w-5 h-5 text-blue-600" />
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Mic className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <h2 className="text-xl font-semibold">
                   {isParentaSpeaking ? "Parenta is speaking..." : "Parenta"}
                 </h2>
                 {isParentaSpeaking && (
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Please wait until the response is complete
                   </p>
                 )}
@@ -56,7 +56,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
             </Button>
           </div>
 
-          <ScrollArea className="h-[400px] rounded-xl bg-white/50 backdrop-blur-sm p-4">
+          <ScrollArea className="h-[400px] rounded-xl bg-muted/50 backdrop-blur-sm p-4">
             <div className="space-y-4">
               {messages.map((message) => (
                 <div
@@ -65,16 +65,18 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
                     message.role === 'user' ? 'justify-end' : 'justify-start'
                   }`}
                 >
-                  <div className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                  <Card className={`max-w-[80%] ${
                     message.role === 'user' 
-                      ? 'bg-blue-500 text-white' 
-                      : 'bg-gray-100 text-gray-900'
+                      ? 'bg-primary text-primary-foreground' 
+                      : 'bg-muted'
                   }`}>
-                    <p className="text-sm opacity-70 mb-1">
-                      {message.role === 'user' ? 'You' : 'Parenta'}
-                    </p>
-                    <p>{message.content}</p>
-                  </div>
+                    <CardContent className="p-3">
+                      <p className="text-sm opacity-70 mb-1">
+                        {message.role === 'user' ? 'You' : 'Parenta'}
+                      </p>
+                      <p>{message.content}</p>
+                    </CardContent>
+                  </Card>
                 </div>
               ))}
             </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import WakeWordDetector from '@/components/WakeWordDetector'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import TranscriptOverlay from '@/components/TranscriptOverlay'
 import { useState, useRef } from 'react'
 
@@ -36,12 +36,16 @@ export default function ChatPage() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="bg-blue-500 p-6 text-white">
-        <h1 className="text-2xl font-semibold text-center">Parenta</h1>
-        <p className="text-blue-100 mt-1 text-center">Say &quot;Hey Anna&quot; to start a conversation</p>
-      </div>
+      <Card className="border-none shadow-none bg-primary text-primary-foreground">
+        <CardHeader>
+          <CardTitle className="text-2xl font-semibold text-center">Parenta</CardTitle>
+          <CardDescription className="text-center text-primary-foreground/80">
+            Say &quot;Hey Anna&quot; to start a conversation
+          </CardDescription>
+        </CardHeader>
+      </Card>
       
-      <div className="flex-1 p-6 bg-gray-50">
+      <div className="flex-1 p-6">
         <Card className="mb-6">
           <CardContent className="p-6">
             <h2 className="text-lg font-semibold mb-2">How to use:</h2>
@@ -52,14 +56,16 @@ export default function ChatPage() {
               <li>Say <strong>&quot;Byebye Anna&quot;</strong> to end the conversation</li>
               <li>The system will automatically listen for the wake word again after the call ends</li>
             </ol>
-            <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-md text-amber-800 text-sm">
-              <p><strong>Note:</strong> This feature works best in Chrome or Edge browsers. If you experience issues:</p>
-              <ul className="list-disc pl-5 mt-1">
-                <li>Make sure your microphone is working properly</li>
-                <li>Try refreshing the page</li>
-                <li>Speak clearly when saying the wake word</li>
-              </ul>
-            </div>
+            <Card className="mt-4 bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800">
+              <CardContent className="p-3">
+                <p className="text-amber-800 dark:text-amber-200"><strong>Note:</strong> This feature works best in Chrome or Edge browsers. If you experience issues:</p>
+                <ul className="list-disc pl-5 mt-1 text-amber-800 dark:text-amber-200">
+                  <li>Make sure your microphone is working properly</li>
+                  <li>Try refreshing the page</li>
+                  <li>Speak clearly when saying the wake word</li>
+                </ul>
+              </CardContent>
+            </Card>
           </CardContent>
         </Card>
         
