@@ -4,7 +4,6 @@ import "./globals.css";
 import { NavigationProvider } from '@/components/NavigationProvider';
 import AppLayout from '@/components/AppLayout';
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Parenta",
+  title: "Peter Wei",
   description: "AI-powered voice assistant with wake word detection",
   icons: {
     icon: '/Triple P Logo.png',

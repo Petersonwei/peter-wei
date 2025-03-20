@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 import { useToast } from "@/hooks/use-toast"
 import VoiceBot, { VoiceBotRef } from './VoiceBot'
 
@@ -471,7 +471,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     };
 
     // Function to end call
-    const endCall = async () => {
+    const endCall = useCallback(async () => {
       if (isCallEndingRef.current) {
         console.log('[WakeWordDetector] Call is already ending, ignoring request');
         return;
@@ -524,7 +524,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
         onCallStatusChange?.('ended');
         onEndCall?.();
       }
-    };
+    }, [onCallStatusChange, onEndCall, stopRecognition, clearAllTimeouts, startWakeWordDetection]);
 
     // Expose endCall via ref
     useImperativeHandle(ref, () => ({
