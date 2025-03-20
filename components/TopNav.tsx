@@ -43,7 +43,7 @@ export function TopNav() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex md:flex-1 md:justify-center">
+        <div className="hidden md:flex md:flex-1 md:justify-start">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -74,52 +74,52 @@ export function TopNav() {
           </NavigationMenu>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden ml-auto">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu size={24} />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <div className="mt-6">
-                <nav className="space-y-2">
-                  <Link href="/" legacyBehavior passHref>
-                    <Button
-                      variant={pathname === "/" ? "secondary" : "ghost"}
-                      className={cn(
-                        "w-full justify-start",
-                        pathname === "/" && "bg-secondary"
-                      )}
-                    >
-                      Home
-                    </Button>
-                  </Link>
-                  <Link href="/chat" legacyBehavior passHref>
-                    <Button
-                      variant={pathname === "/chat" ? "secondary" : "ghost"}
-                      className={cn(
-                        "w-full justify-start",
-                        pathname === "/chat" && "bg-secondary"
-                      )}
-                    >
-                      Voice Assistant
-                    </Button>
-                  </Link>
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-
-        {/* Theme Toggle */}
-        <div className="ml-auto flex items-center space-x-4">
+        {/* Right side items (Theme Toggle and Mobile Menu) */}
+        <div className="flex items-center space-x-4 ml-auto">
           <ThemeToggle />
+          
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu size={24} />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="mt-6">
+                  <nav className="space-y-2">
+                    <Link href="/" legacyBehavior passHref>
+                      <Button
+                        variant={pathname === "/" ? "secondary" : "ghost"}
+                        className={cn(
+                          "w-full justify-start",
+                          pathname === "/" && "bg-secondary"
+                        )}
+                      >
+                        Home
+                      </Button>
+                    </Link>
+                    <Link href="/chat" legacyBehavior passHref>
+                      <Button
+                        variant={pathname === "/chat" ? "secondary" : "ghost"}
+                        className={cn(
+                          "w-full justify-start",
+                          pathname === "/chat" && "bg-secondary"
+                        )}
+                      >
+                        Voice Assistant
+                      </Button>
+                    </Link>
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </div>
