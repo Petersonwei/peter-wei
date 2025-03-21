@@ -28,7 +28,7 @@ export default function Home() {
                   1000,
                   'I am an AI Enthusiast',
                   1000,
-                  'Let&apos;s Chat!',
+                  'Lets Chat!',
                   1000,
                 ]}
                 wrapper="span"

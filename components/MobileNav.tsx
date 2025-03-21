@@ -22,13 +22,6 @@ interface MobileNavProps {
 export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
   const [open, setOpen] = useState(false)
   
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "CV", href: "/cv" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-  ]
-
   return (
     <div className="md:hidden">
       {/* Top Bar */}

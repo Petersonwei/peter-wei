@@ -121,7 +121,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     }, [toast]);
     
     // Clear all timeouts to prevent memory leaks
-    const clearAllTimeouts = () => {
+    const clearAllTimeouts = useCallback(() => {
       if (noSpeechTimeoutRef.current) {
         clearTimeout(noSpeechTimeoutRef.current);
         noSpeechTimeoutRef.current = null;
@@ -136,10 +136,10 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
         clearTimeout(callEndedTimeoutRef.current);
         callEndedTimeoutRef.current = null;
       }
-    };
+    }, []);
     
     // Function to stop recognition safely
-    const stopRecognition = () => {
+    const stopRecognition = useCallback(() => {
       if (recognitionRef.current) {
         try {
           recognitionRef.current.stop();
@@ -150,7 +150,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
         recognitionRef.current = null;
       }
       isListeningRef.current = false;
-    };
+    }, []);
     
     // Start/stop recognition based on detector state
     useEffect(() => {
@@ -207,7 +207,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     }, [detectorState]);
     
     // Function to start wake word detection
-    const startWakeWordDetection = () => {
+    const startWakeWordDetection = useCallback(() => {
       if (typeof window === 'undefined') return;
       
       // Don't start if already listening or transitioning
@@ -396,7 +396,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           }, 1000);
         }
       }
-    };
+    }, [detectorState, stopRecognition, clearAllTimeouts]);
     
     // Function to start a call
     const startCall = async () => {
