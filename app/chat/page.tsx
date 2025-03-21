@@ -72,7 +72,7 @@ export default function ChatPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
-                    <span>Wait for the "Listening for Hey Peter" status</span>
+                    <span>Wait for the <strong>Listening for Hey Peter</strong> status</span>
                   </li>
                 </ul>
               </div>
@@ -85,7 +85,7 @@ export default function ChatPage() {
                 <ul className="ml-8 space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
-                    <span>Say <strong>&quot;Hey Peter&quot;</strong> to activate</span>
+                    <span>Say <strong>Hey Peter</strong> to activate</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
@@ -106,11 +106,11 @@ export default function ChatPage() {
                 <ul className="ml-8 space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
-                    <span>Say <strong>&quot;Byebye Peter&quot;</strong> to end</span>
+                    <span>Say <strong>Byebye Peter</strong> to end</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
-                    <span>Or click the "End Call" button</span>
+                    <span>Or click the <strong>End Call</strong> button</span>
                   </li>
                 </ul>
               </div>

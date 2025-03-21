@@ -72,13 +72,14 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     
     // Refs for speech recognition and VoiceBot
     const recognitionRef = useRef<SpeechRecognition | null>(null);
-    const voiceBotRef = useRef<VoiceBotRef>(null);
+    const voiceBotRef = useRef<{ startCall: () => Promise<void>; endCall: () => Promise<void> } | null>(null);
     const noSpeechTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const restartTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const callEndedTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const isTransitioningRef = useRef<boolean>(false);
     const isListeningRef = useRef<boolean>(false);
     const isCallEndingRef = useRef<boolean>(false);
+    const startCallRef = useRef<() => Promise<void>>(() => Promise.resolve());
     
     // Check for browser support and request permissions once on mount
     useEffect(() => {
@@ -204,7 +205,45 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
         }
       };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [detectorState]);
+    }, [detectorState, clearAllTimeouts, stopRecognition]);
+    
+    // Function to start a call
+    const startCall = useCallback(async () => {
+      // Don't start if we're ending a call
+      if (isCallEndingRef.current) {
+        console.log('[WakeWordDetector] Cannot start call while ending another call');
+        return;
+      }
+
+      setDetectorState('calling');
+      
+      if (voiceBotRef.current) {
+        try {
+          await voiceBotRef.current.startCall();
+        } catch (err) {
+          console.error('[WakeWordDetector] Error starting call:', err);
+          toast({
+            title: "Call Error",
+            description: "Failed to start call. Please try again.",
+            variant: "destructive"
+          });
+          
+          // Go back to listening mode after a delay
+          isTransitioningRef.current = true;
+          setTimeout(() => {
+            setDetectorState('listening');
+            setTimeout(() => {
+              isTransitioningRef.current = false;
+            }, 1000);
+          }, 2000);
+        }
+      }
+    }, [toast]);
+
+    // Keep startCallRef current
+    useEffect(() => {
+      startCallRef.current = startCall;
+    }, [startCall]);
     
     // Function to start wake word detection
     const startWakeWordDetection = useCallback(() => {
@@ -370,7 +409,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           
           // Start call after a short delay to ensure clean state transition
           setTimeout(() => {
-            startCall();
+            startCallRef.current();
             // Reset transitioning flag after call starts
             setTimeout(() => {
               isTransitioningRef.current = false;
@@ -396,40 +435,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           }, 1000);
         }
       }
-    }, [detectorState, stopRecognition, clearAllTimeouts]);
-    
-    // Function to start a call
-    const startCall = async () => {
-      // Don't start if we're ending a call
-      if (isCallEndingRef.current) {
-        console.log('[WakeWordDetector] Cannot start call while ending another call');
-        return;
-      }
-
-      setDetectorState('calling');
-      
-      if (voiceBotRef.current) {
-        try {
-          await voiceBotRef.current.startCall();
-        } catch (err) {
-          console.error('[WakeWordDetector] Error starting call:', err);
-          toast({
-            title: "Call Error",
-            description: "Failed to start call. Please try again.",
-            variant: "destructive"
-          });
-          
-          // Go back to listening mode after a delay
-          isTransitioningRef.current = true;
-          setTimeout(() => {
-            setDetectorState('listening');
-            setTimeout(() => {
-              isTransitioningRef.current = false;
-            }, 1000);
-          }, 2000);
-        }
-      }
-    };
+    }, [detectorState, stopRecognition, clearAllTimeouts, toast]);
     
     // Function to handle call end
     const handleCallEnd = () => {

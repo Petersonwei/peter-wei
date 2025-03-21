@@ -542,7 +542,7 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
         }
       }
     }
-  }, [updateState, toast, state.callStatus, ensureClientInitialized])
+  }, [updateState, toast, state.callStatus, ensureClientInitialized, endCall])
 
   // Render UI
   return (
@@ -609,7 +609,7 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                   </svg>
                   <h3 className="text-lg font-medium mb-1">No conversations yet</h3>
-                  <p className="text-sm">Say "Hey Peter" or click the Start Call button to begin</p>
+                  <p className="text-sm">Say <strong>Hey Peter</strong> or click the Start Call button to begin</p>
                 </div>
               </div>
             )}
