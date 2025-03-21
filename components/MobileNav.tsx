@@ -29,8 +29,8 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Image 
-              src="/Triple P Logo.png" 
-              alt="Triple P Logo" 
+              src="/Peter Wei Logo.png" 
+              alt="Peter Wei Logo" 
               width={40} 
               height={40} 
               className="mr-2"

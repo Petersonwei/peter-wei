@@ -348,8 +348,8 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           console.log('[WakeWordDetector] Heard:', transcript);
         }
         
-        // Check for wake word "Hey Anna"
-        if (transcript.includes('hey anna')) {
+        // Check for wake word "Hey Peter"
+        if (transcript.includes('hey peter')) {
           console.log('[WakeWordDetector] Wake word detected:', transcript);
           
           // Set transitioning flag to prevent multiple detections
@@ -365,7 +365,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           // Show toast
           toast({
             title: "Wake Word Detected",
-            description: "Hey Anna detected! Starting call...",
+            description: "Hey Peter detected! Starting call...",
           });
           
           // Start call after a short delay to ensure clean state transition
@@ -535,7 +535,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     const getStatusText = (state: DetectorState): string => {
       switch (state) {
         case 'initializing': return 'Initializing...';
-        case 'listening': return 'Listening for "Hey Anna"';
+        case 'listening': return 'Listening for "Hey Peter"';
         case 'detected': return 'Wake word detected!';
         case 'calling': return 'In call';
         case 'error': return 'Error';

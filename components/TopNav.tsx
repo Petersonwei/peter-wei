@@ -32,8 +32,8 @@ export function TopNav() {
           <div className="relative">
             <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm"></div>
             <Image 
-              src="/Triple P Logo.png" 
-              alt="Triple P Logo" 
+              src="/Peter Wei Logo.png" 
+              alt="Peter Wei Logo" 
               width={40} 
               height={40} 
               className="rounded-full relative"
