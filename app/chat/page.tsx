@@ -39,56 +39,56 @@ export default function ChatPage() {
   return (
     <div className="h-full flex flex-col">
       <Card className="border-none shadow-none bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
-        <CardHeader className="pb-4">
-          <CardTitle className="text-3xl font-bold text-center flex items-center justify-center gap-2">
-            <Mic className="h-6 w-6" />
+        <CardHeader className="pb-2 sm:pb-4 px-4 sm:px-6 pt-4 sm:pt-6">
+          <CardTitle className="text-xl sm:text-3xl font-bold text-center flex items-center justify-center gap-2">
+            <Mic className="h-5 w-5 sm:h-6 sm:w-6" />
             Peter Wei Voice Assistant
           </CardTitle>
-          <CardDescription className="text-center text-primary-foreground/90 font-medium text-lg">
+          <CardDescription className="text-center text-primary-foreground/90 font-medium text-base sm:text-lg">
             Say <strong>Hey Peter</strong> to start a conversation
           </CardDescription>
         </CardHeader>
       </Card>
       
-      <div className="flex-1 p-6 max-w-3xl mx-auto w-full">
-        <Card className="mb-6 border-2 border-muted shadow-md">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xl flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" />
+      <div className="flex-1 p-3 sm:p-6 max-w-3xl mx-auto w-full">
+        <Card className="mb-4 sm:mb-6 border-2 border-muted shadow-md">
+          <CardHeader className="pb-2 px-4 pt-4">
+            <CardTitle className="text-lg sm:text-xl flex items-center gap-2">
+              <Info className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               How to Use the Voice Assistant
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm">1</span>
+          <CardContent className="space-y-3 sm:space-y-4 px-4 pb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
+                  <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs sm:text-sm">1</span>
                   Getting Started
                 </h3>
-                <ul className="ml-8 space-y-2 text-muted-foreground">
+                <ul className="ml-6 sm:ml-8 space-y-1.5 sm:space-y-2 text-muted-foreground text-xs sm:text-sm">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Allow microphone access when prompted</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Wait for the <strong>Listening for Hey Peter</strong> status</span>
                   </li>
                 </ul>
               </div>
               
-              <div className="space-y-3">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm">2</span>
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
+                  <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs sm:text-sm">2</span>
                   Using the Assistant
                 </h3>
-                <ul className="ml-8 space-y-2 text-muted-foreground">
+                <ul className="ml-6 sm:ml-8 space-y-1.5 sm:space-y-2 text-muted-foreground text-xs sm:text-sm">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Say <strong>Hey Peter</strong> to activate</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Speak naturally after the connection</span>
                   </li>
                 </ul>
@@ -97,48 +97,48 @@ export default function ChatPage() {
             
             <Separator />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm">3</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
+                  <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs sm:text-sm">3</span>
                   Ending a Conversation
                 </h3>
-                <ul className="ml-8 space-y-2 text-muted-foreground">
+                <ul className="ml-6 sm:ml-8 space-y-1.5 sm:space-y-2 text-muted-foreground text-xs sm:text-sm">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Say <strong>Byebye Peter</strong> to end</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Or click the <strong>End Call</strong> button</span>
                   </li>
                 </ul>
               </div>
               
-              <div className="space-y-3">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm">4</span>
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-semibold flex items-center gap-2 text-sm sm:text-base">
+                  <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs sm:text-sm">4</span>
                   After the Call
                 </h3>
-                <ul className="ml-8 space-y-2 text-muted-foreground">
+                <ul className="ml-6 sm:ml-8 space-y-1.5 sm:space-y-2 text-muted-foreground text-xs sm:text-sm">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>System will automatically listen again</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mt-0.5 text-green-500 flex-shrink-0" />
                     <span>Say <strong>Hey Peter</strong> to start a new conversation</span>
                   </li>
                 </ul>
               </div>
             </div>
           </CardContent>
-          <CardFooter className="bg-amber-50 dark:bg-amber-950 border-t border-amber-200 dark:border-amber-800 rounded-b-lg">
+          <CardFooter className="bg-amber-50 dark:bg-amber-950 border-t border-amber-200 dark:border-amber-800 rounded-b-lg p-3 sm:p-4">
             <div className="flex items-start gap-2 w-full">
-              <HelpCircle className="h-5 w-5 mt-0.5 text-amber-700 dark:text-amber-400 flex-shrink-0" />
-              <div className="text-sm text-amber-800 dark:text-amber-300">
+              <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5 mt-0.5 text-amber-700 dark:text-amber-400 flex-shrink-0" />
+              <div className="text-xs sm:text-sm text-amber-800 dark:text-amber-300">
                 <p className="font-medium">For best results:</p>
-                <ul className="list-disc pl-5 mt-1 space-y-1">
+                <ul className="list-disc pl-4 sm:pl-5 mt-1 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
                   <li>Use Chrome or Edge browsers</li>
                   <li>Ensure your microphone is properly connected</li>
                   <li>Speak clearly when saying the wake word</li>

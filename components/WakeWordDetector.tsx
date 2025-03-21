@@ -550,22 +550,22 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     // Render different UI based on detector state
     return (
       <div className="wake-word-detector">
-        <div className="mb-4 p-4 bg-white border border-gray-200 rounded-md shadow-sm flex items-center justify-between">
+        <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-white border border-gray-200 rounded-md shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0">
           <div>
-            <h2 className="text-lg font-semibold text-blue-700">Wake Word Status</h2>
-            <p className="text-sm text-gray-600">
+            <h2 className="text-base sm:text-lg font-semibold text-blue-700">Wake Word Status</h2>
+            <p className="text-xs sm:text-sm text-gray-600">
               {getStatusText(detectorState)}
             </p>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center justify-end">
             {detectorState === 'error' ? (
-              <span className="text-sm text-red-500">Microphone access denied</span>
+              <span className="text-xs sm:text-sm text-red-500">Microphone access denied</span>
             ) : (
               <>
                 <div 
-                  className={`w-4 h-4 rounded-full mr-2 ${
+                  className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full mr-2 ${
                     detectorState === 'listening' && isListeningRef.current
-                      ? 'bg-green-500 animate-pulse' 
+                      ? 'bg-green-500' 
                       : detectorState === 'listening' && !isListeningRef.current
                         ? 'bg-yellow-500'
                         : detectorState === 'calling'
@@ -575,7 +575,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
                             : 'bg-red-500'
                   }`} 
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-xs sm:text-sm font-medium text-gray-700">
                   {detectorState === 'listening' && isListeningRef.current
                     ? 'Active' 
                     : detectorState === 'listening' && !isListeningRef.current
@@ -591,7 +591,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
             {/* Restart button shown when there's an error */}
             {detectorState === 'error' && (
               <button
-                className="ml-4 px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                className="ml-3 sm:ml-4 px-2 sm:px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 onClick={() => {
                   setDetectorState('listening');
                   startWakeWordDetection();
