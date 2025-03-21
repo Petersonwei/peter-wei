@@ -1,0 +1,15 @@
+{
+  "education": [
+    {
+      "degree": "Bachelor of Information Technology",
+      "school": "University of Queensland",
+      "date": "2023 – 2026",
+      "location": "Brisbane, Australia",
+      "description": [
+        "Major in Software Design",
+        "Minor in Data Science",
+        "GPA: 6.0/7.0"
+      ]
+    }
+  ]
+} 

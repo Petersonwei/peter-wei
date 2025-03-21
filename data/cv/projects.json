@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "title": "Peter Wei Portfolio",
+      "description": "A modern portfolio website built with Next.js, React, and ShadCN UI, featuring a chat interface and CV content.",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "ShadCN UI", "Vercel"],
+      "link": "https://peter-wei.vercel.app"
+    },
+    {
+      "title": "Data Wiki Page",
+      "description": "A dynamic data wiki page with Next.js, React, ShadCN UI, integrated with a .NET backend using Azure DevOps and Agile.",
+      "technologies": ["Next.js", "React", "ShadCN UI", ".NET", "Azure DevOps", "Agile"],
+      "link": null
+    },
+    {
+      "title": "Payroll System",
+      "description": "A payroll system managing 1,500+ projects, leveraging React, Vite, Tailwind CSS, TypeScript, Axios, MongoDB, and Nest.js to streamline payroll data processing and generate accurate PDFs.",
+      "technologies": ["React", "Vite", "Tailwind CSS", "TypeScript", "Axios", "MongoDB", "Nest.js", "AWS"],
+      "link": null
+    },
+    {
+      "title": "Dribag Coffee Co. Website",
+      "description": "Led Shopify development and SEO strategy, securing corporate clients, and generating 30K+ social media views.",
+      "technologies": ["Shopify", "SEO", "Social Media Marketing"],
+      "link": null
+    },
+    {
+      "title": "AxCharge Website",
+      "description": "Developed and launched the official website for a start-up team of 4, increasing user engagement by 30% through innovative UI/UX design.",
+      "technologies": ["HTML", "CSS", "JavaScript", "WordPress", "Adobe Tools"],
+      "link": null
+    },
+    {
+      "title": "Rotary Club Website",
+      "description": "Redesigned and updated the Rotary Club of Brisbane's website, enhancing content accessibility and user engagement by 25%.",
+      "technologies": ["HTML", "CSS", "Club Runner"],
+      "link": null
+    }
+  ]
+} 

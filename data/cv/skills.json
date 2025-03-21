@@ -1,0 +1,54 @@
+{
+  "frontEnd": {
+    "title": "Frontend Development",
+    "items": [
+      "React", "React Native", "NextJS", "TypeScript", "JavaScript", "HTML", "CSS", 
+      "UI/UX Design", "Figma", "Human Centred Design"
+    ]
+  },
+  "backEnd": {
+    "title": "Backend Development", 
+    "items": [
+      "NodeJS", "NestJS", ".NET", "Python", "C#", "PHP",
+      "REST API", "GraphQL", "MongoDB", "SQL", "Swagger API Documentation"
+    ]
+  },
+  "cloudAndDevOps": {
+    "title": "Cloud & DevOps",
+    "items": [
+      "AWS", "Google Cloud", "Docker", "Kubernetes", "Swarm",
+      "Heroku", "Linux", "CI/CD", "Render", "Vercel", "Netlify",
+      "GitHub Actions", "Git", "npm/yarn/pnpm", "Azure DevOps"
+    ]
+  },
+  "dataAndAI": {
+    "title": "Data Science & AI",
+    "items": [
+      "Pandas", "Matplotlib", "Seaborn", "R Studio", "Power BI",
+      "Data Science", "Statistics", "Logistic Regression",
+      "K-means Clustering", "AI agent", "Business Analysis"
+    ]
+  },
+  "digitalMarketing": {
+    "title": "Digital Marketing",
+    "items": [
+      "SEO", "Web Analytics", "Shopify", "WordPress", "Elementor",
+      "Flourish", "Power BI"
+    ]
+  },
+  "programming": {
+    "title": "Other Programming",
+    "items": [
+      "C", "C++", "VBA", "Internet of Things"
+    ]
+  },
+  "professional": {
+    "title": "Professional Skills",
+    "items": [
+      "Analytical Thinking", "Design Thinking", "Problem-solving",
+      "Teamwork", "Leadership", "Project Management", "Agile",
+      "PowerPoint", "Word", "Excel", "Notion", "Google Meet",
+      "Zoom", "Microsoft Teams"
+    ]
+  }
+} 

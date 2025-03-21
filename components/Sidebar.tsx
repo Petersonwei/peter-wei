@@ -11,6 +11,13 @@ interface SidebarProps {
   onTabChange: (tab: string) => void;
 }
 
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "CV", href: "/cv" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+]
+
 export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   return (
     <div className="h-full w-[220px] bg-card border-r border-border flex flex-col">

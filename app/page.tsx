@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { MessageSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { TypeAnimation } from 'react-type-animation'
 
 export default function Home() {
   const router = useRouter()
@@ -14,38 +15,44 @@ export default function Home() {
   
   return (
     <div className="container mx-auto py-8">
-      <div className="space-y-8">
+      <div className="min-h-[80vh] flex flex-col items-center justify-center space-y-8">
         {/* Hero Section */}
-        <Card className="border-none shadow-none bg-primary text-primary-foreground">
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold text-center">Welcome to Parenta</CardTitle>
-            <CardDescription className="text-center text-primary-foreground/80">
-              Your personal voice assistant powered by AI
+        <Card className="border-none shadow-none bg-transparent text-foreground max-w-3xl w-full">
+          <CardHeader className="text-center space-y-4">
+            <CardTitle className="text-4xl sm:text-5xl font-bold">
+              <TypeAnimation
+                sequence={[
+                  'Hi, I am Peter Wei',
+                  1000,
+                  'I am a Full Stack Developer',
+                  1000,
+                  'I am an AI Enthusiast',
+                  1000,
+                  'Let&apos;s Chat!',
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            </CardTitle>
+            <CardDescription className="text-lg sm:text-xl">
+              Welcome to my interactive portfolio. I&apos;d love to chat with you!
             </CardDescription>
           </CardHeader>
-        </Card>
-        
-        {/* Feature Card */}
-        <Card className="max-w-2xl mx-auto">
-          <CardContent className="p-6">
-            <div className="flex flex-col items-center text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                <MessageSquare className="h-8 w-8 text-primary" />
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-2xl font-semibold">Voice Assistant</h2>
-                <p className="text-muted-foreground">
-                  Talk to your AI assistant using voice commands. Just say &quot;Hey Anna&quot; to get started.
-                </p>
-              </div>
-              <Button 
-                size="lg"
-                onClick={navigateToChat}
-                className="mt-4"
-              >
-                Start Conversation
-              </Button>
-            </div>
+          <CardContent className="flex flex-col items-center space-y-6">
+            <p className="text-center text-muted-foreground max-w-2xl">
+              I&apos;ve built an AI-powered voice assistant that can help you learn more about me, 
+              my work, and my experience. Click below to start a conversation!
+            </p>
+            <Button 
+              size="lg" 
+              onClick={navigateToChat}
+              className="group"
+            >
+              <MessageSquare className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
+              Start Chatting
+            </Button>
           </CardContent>
         </Card>
       </div>

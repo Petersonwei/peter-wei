@@ -1,0 +1,14 @@
+{
+  "contact": {
+    "name": "Peter Wei",
+    "title": "Full Stack Developer",
+    "email": "peter.wei@example.com",
+    "phone": "+61 123 456 789",
+    "location": "Brisbane, Australia",
+    "social": {
+      "github": "https://github.com/peterwei",
+      "linkedin": "https://linkedin.com/in/peterwei",
+      "twitter": "https://twitter.com/peterwei"
+    }
+  }
+} 
