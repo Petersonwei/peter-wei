@@ -546,7 +546,7 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
 
   // Render UI
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-3xl mx-auto border-2 shadow-md">
       <CardContent className="p-6">
         {/* Call control button and status */}
         <div className="flex items-center justify-between mb-6">
@@ -554,37 +554,65 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
             onClick={state.isCallActive ? endCall : startCall}
             disabled={state.isLoading}
             variant={state.isCallActive ? "destructive" : "default"}
+            className="px-6 py-5 text-base font-medium"
+            size="lg"
           >
             {state.isLoading ? (
-              <span>Initializing...</span>
+              <div className="flex items-center gap-2">
+                <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
+                <span>Initializing...</span>
+              </div>
             ) : state.isCallActive ? (
               <>
-                <PhoneOff className="mr-2 h-4 w-4" />
+                <PhoneOff className="mr-2 h-5 w-5" />
                 End Call
               </>
             ) : (
               <>
-                <Phone className="mr-2 h-4 w-4" />
+                <Phone className="mr-2 h-5 w-5" />
                 Start Call
               </>
             )}
           </Button>
           
-          <span className="text-sm text-muted-foreground">
-            Status: {state.callStatus}
-          </span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted">
+            <div className={`h-2.5 w-2.5 rounded-full ${
+              state.callStatus === 'ongoing' ? 'bg-green-500' : 
+              state.callStatus === 'connecting' ? 'bg-amber-500' :
+              state.callStatus === 'error' ? 'bg-red-500' : 'bg-blue-500'
+            }`}></div>
+            <span className="text-sm font-medium capitalize">
+              {state.callStatus}
+            </span>
+          </div>
         </div>
 
         {/* Error display */}
         {state.error && (
-          <div className="mb-6 p-4 bg-destructive/10 text-destructive rounded-md">
-            {state.error}
+          <div className="mb-6 p-4 bg-destructive/10 text-destructive rounded-md border border-destructive/20 flex items-start gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 flex-shrink-0 mt-0.5">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div>{state.error}</div>
           </div>
         )}
 
         {/* Chat message display */}
-        <ScrollArea className="h-[500px] rounded-md border p-4">
+        <ScrollArea className="h-[500px] rounded-md border p-4 bg-muted/20">
           <div className="space-y-4">
+            {state.messages.length === 0 && (
+              <div className="h-full flex items-center justify-center py-20">
+                <div className="text-center text-muted-foreground">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto h-12 w-12 mb-4 opacity-50">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <h3 className="text-lg font-medium mb-1">No conversations yet</h3>
+                  <p className="text-sm">Say "Hey Peter" or click the Start Call button to begin</p>
+                </div>
+              </div>
+            )}
             {state.messages.map((message) => (
               <div
                 key={message.id}
@@ -592,16 +620,16 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
                   message.role === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
-                <Card className={`max-w-[80%] ${
+                <Card className={`max-w-[80%] shadow-sm ${
                   message.role === 'user' 
                     ? 'bg-primary text-primary-foreground' 
-                    : 'bg-muted'
+                    : 'bg-background border-muted'
                 }`}>
                   <CardContent className="p-3">
-                    <p className="text-sm opacity-70">
-                      {message.role === 'user' ? 'You' : 'Assistant'}
+                    <p className="text-xs font-medium mb-1 opacity-70">
+                      {message.role === 'user' ? 'You' : 'Peter'}
                     </p>
-                    <p className="mt-1">{message.content}</p>
+                    <p className="mt-1 leading-relaxed">{message.content}</p>
                   </CardContent>
                 </Card>
               </div>
