@@ -38,9 +38,9 @@ export default function ChatPage() {
     <div className="h-full flex flex-col">
       <Card className="border-none shadow-none bg-primary text-primary-foreground">
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold text-center">Parenta</CardTitle>
+          <CardTitle className="text-2xl font-semibold text-center">Peter Wei</CardTitle>
           <CardDescription className="text-center text-primary-foreground/80">
-            Say &quot;Hey Anna&quot; to start a conversation
+            Say &quot;Hey Peter&quot; to start a conversation
           </CardDescription>
         </CardHeader>
       </Card>
@@ -51,9 +51,9 @@ export default function ChatPage() {
             <h2 className="text-lg font-semibold mb-2">How to use:</h2>
             <ol className="list-decimal pl-5 space-y-2">
               <li>Allow microphone access when prompted</li>
-              <li>Say <strong>&quot;Hey Anna&quot;</strong> to activate the voice assistant</li>
+              <li>Say <strong>&quot;Hey Peter&quot;</strong> to activate the voice assistant</li>
               <li>Speak naturally with the AI after the call connects</li>
-              <li>Say <strong>&quot;Byebye Anna&quot;</strong> to end the conversation</li>
+              <li>Say <strong>&quot;Byebye Peter&quot;</strong> to end the conversation</li>
               <li>The system will automatically listen for the wake word again after the call ends</li>
             </ol>
             <Card className="mt-4 bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800">

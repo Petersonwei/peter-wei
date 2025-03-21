@@ -353,6 +353,20 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
 
         if (!content) return
 
+        // Check for "Byebye Peter" to end the call
+        if (role === 'user' && content.toLowerCase().includes('byebye peter')) {
+          console.log('[VoiceBot] End call phrase detected:', content);
+          toast({
+            title: "End Call Detected",
+            description: "Byebye Peter detected! Ending call...",
+          });
+          
+          // End the call with a slight delay to allow the message to be added
+          setTimeout(() => {
+            endCall();
+          }, 500);
+        }
+
         setState(prev => {
           // Find the last message from the same role that isn't complete
           const lastIncompleteMessageIndex = [...prev.messages].reverse()
