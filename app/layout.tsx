@@ -20,7 +20,10 @@ export const metadata: Metadata = {
   title: "Peter Wei",
   description: "AI-powered voice assistant with wake word detection",
   icons: {
-    icon: '/Peter Wei Logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/Peter Wei Logo.png', type: 'image/png' },
+    ],
     apple: '/Peter Wei Logo.png',
   },
 };
@@ -33,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/Peter Wei Logo.png" sizes="any" />
+        {/* Favicon is handled by the metadata above */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider
