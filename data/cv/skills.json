@@ -1,54 +1,50 @@
 {
-  "frontEnd": {
-    "title": "Frontend Development",
+  "programming": {
+    "title": "Programming Languages",
     "items": [
-      "React", "React Native", "NextJS", "TypeScript", "JavaScript", "HTML", "CSS", 
-      "UI/UX Design", "Figma", "Human Centred Design"
+      "JavaScript (ES6+)", "TypeScript", "Python", "C#", "C++", "SQL", "PHP", "HTML5", "CSS3", "Java"
     ]
   },
-  "backEnd": {
-    "title": "Backend Development", 
+  "frameworks": {
+    "title": "Frameworks & Libraries", 
     "items": [
-      "NodeJS", "NestJS", ".NET", "Python", "C#", "PHP",
-      "REST API", "GraphQL", "MongoDB", "SQL", "Swagger API Documentation"
+      "React", "Next.js", "React Native", "Node.js (Express.js, Nest.js)", ".NET Core", "Django"
+    ]
+  },
+  "databases": {
+    "title": "Databases & Data Stores",
+    "items": [
+      "MongoDB", "PostgreSQL", "MySQL", "MS SQL Server", "Firebase"
     ]
   },
   "cloudAndDevOps": {
     "title": "Cloud & DevOps",
     "items": [
-      "AWS", "Google Cloud", "Docker", "Kubernetes", "Swarm",
-      "Heroku", "Linux", "CI/CD", "Render", "Vercel", "Netlify",
-      "GitHub Actions", "Git", "npm/yarn/pnpm", "Azure DevOps"
+      "AWS (EC2, S3, RDS, Lambda)", "Azure", "Docker", "Kubernetes", "GitHub Actions", "CI/CD Pipelines"
     ]
   },
-  "dataAndAI": {
-    "title": "Data Science & AI",
+  "testing": {
+    "title": "Testing & Automation",
     "items": [
-      "Pandas", "Matplotlib", "Seaborn", "R Studio", "Power BI",
-      "Data Science", "Statistics", "Logistic Regression",
-      "K-means Clustering", "AI agent", "Business Analysis"
+      "Jest", "Cypress", "Selenium"
     ]
   },
-  "digitalMarketing": {
-    "title": "Digital Marketing",
+  "dataEngineering": {
+    "title": "Data Engineering",
     "items": [
-      "SEO", "Web Analytics", "Shopify", "WordPress", "Elementor",
-      "Flourish", "Power BI"
+      "Data Warehousing", "Data Visualisation (Power BI, Tableau)", "Business Intelligence"
     ]
   },
-  "programming": {
-    "title": "Other Programming",
+  "design": {
+    "title": "Design",
     "items": [
-      "C", "C++", "VBA", "Internet of Things"
+      "UI/UX Design", "Figma", "Wireframing", "Prototyping"
     ]
   },
-  "professional": {
-    "title": "Professional Skills",
+  "projectManagement": {
+    "title": "Project Management",
     "items": [
-      "Analytical Thinking", "Design Thinking", "Problem-solving",
-      "Teamwork", "Leadership", "Project Management", "Agile",
-      "PowerPoint", "Word", "Excel", "Notion", "Google Meet",
-      "Zoom", "Microsoft Teams"
+      "Agile (Scrum, Kanban)", "Leadership", "Multi-Level Stakeholder Management"
     ]
   }
 } 

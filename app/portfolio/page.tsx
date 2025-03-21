@@ -2,10 +2,10 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Briefcase, GraduationCap, Code2, Award } from 'lucide-react'
+import { Briefcase, GraduationCap, Code2, Award, ExternalLink } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Github, Linkedin, Mail, Phone, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail, Phone } from "lucide-react"
 
 import skills from "@/data/cv/skills.json"
 import experience from "@/data/cv/experience.json"
@@ -49,8 +49,8 @@ export default function Portfolio() {
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href={contact.contact.social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <Twitter className="h-4 w-4" />
+                <a href={contact.contact.social.portfolio} target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+                  <ExternalLink className="h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -91,7 +91,7 @@ export default function Portfolio() {
           </CardHeader>
           <CardContent className="space-y-6">
             {experience.experiences.map((exp) => (
-              <div key={exp.title} className="space-y-2">
+              <div key={`${exp.title}-${exp.company}`} className="space-y-2">
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="text-lg font-semibold">{exp.title}</h3>

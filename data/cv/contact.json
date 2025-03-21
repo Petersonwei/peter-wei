@@ -2,13 +2,13 @@
   "contact": {
     "name": "Peter Wei",
     "title": "Full Stack Developer",
-    "email": "peter.wei@example.com",
-    "phone": "+61 123 456 789",
-    "location": "Brisbane, Australia",
+    "email": "pwei.dev@gmail.com",
+    "phone": "+61 452 509 198",
+    "location": "Brisbane, QLD 4000, Australia",
     "social": {
-      "github": "https://github.com/peterwei",
-      "linkedin": "https://linkedin.com/in/peterwei",
-      "twitter": "https://twitter.com/peterwei"
+      "github": "https://github.com/Petersonwei",
+      "linkedin": "https://linkedin.com/in/peter-wei-it",
+      "portfolio": "https://my-portfolio-ruddy-alpha-30.vercel.app/"
     }
   }
 } 

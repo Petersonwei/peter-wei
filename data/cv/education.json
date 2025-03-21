@@ -1,14 +1,29 @@
 {
   "education": [
     {
-      "degree": "Bachelor of Information Technology",
-      "school": "University of Queensland",
-      "date": "2023 – 2026",
+      "degree": "Master of Information Technology",
+      "school": "The University of Queensland",
+      "date": "Jul 2023 - Jun 2025",
       "location": "Brisbane, Australia",
       "description": [
-        "Major in Software Design",
-        "Minor in Data Science",
-        "GPA: 6.0/7.0"
+        "Distinction Average",
+        "Thesis Research: Design and Evaluation of an AI Technology for Families (Supervisor: Dr. Dhaval Vyas)"
+      ]
+    },
+    {
+      "degree": "Industry Placement & Study Program",
+      "school": "University of New South Wales",
+      "date": "Jul 2022 - Jun 2023",
+      "location": "Sydney, Australia",
+      "description": []
+    },
+    {
+      "degree": "Bachelor of Business Administration",
+      "school": "Tunghai University",
+      "date": "Jul 2019 - Jun 2023",
+      "location": "Taiwan",
+      "description": [
+        "Distinction Average"
       ]
     }
   ]
