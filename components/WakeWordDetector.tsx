@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 import { useToast } from "@/hooks/use-toast"
-import VoiceBot, { VoiceBotRef } from './VoiceBot'
+import VoiceBot from './VoiceBot'
 
 // Define SpeechRecognition types
 interface SpeechRecognitionEvent extends Event {
@@ -81,6 +81,38 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     const isCallEndingRef = useRef<boolean>(false);
     const startCallRef = useRef<() => Promise<void>>(() => Promise.resolve());
     
+    // Clear all timeouts to prevent memory leaks
+    const clearAllTimeouts = useCallback(() => {
+      if (noSpeechTimeoutRef.current) {
+        clearTimeout(noSpeechTimeoutRef.current);
+        noSpeechTimeoutRef.current = null;
+      }
+      
+      if (restartTimeoutRef.current) {
+        clearTimeout(restartTimeoutRef.current);
+        restartTimeoutRef.current = null;
+      }
+      
+      if (callEndedTimeoutRef.current) {
+        clearTimeout(callEndedTimeoutRef.current);
+        callEndedTimeoutRef.current = null;
+      }
+    }, []);
+    
+    // Function to stop recognition safely
+    const stopRecognition = useCallback(() => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch (err) {
+          // Ignore errors during cleanup
+          console.log('[WakeWordDetector] Error stopping recognition:', err);
+        }
+        recognitionRef.current = null;
+      }
+      isListeningRef.current = false;
+    }, []);
+    
     // Check for browser support and request permissions once on mount
     useEffect(() => {
       if (typeof window === 'undefined') return;
@@ -119,39 +151,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
         stopRecognition();
         clearAllTimeouts();
       };
-    }, [toast]);
-    
-    // Clear all timeouts to prevent memory leaks
-    const clearAllTimeouts = useCallback(() => {
-      if (noSpeechTimeoutRef.current) {
-        clearTimeout(noSpeechTimeoutRef.current);
-        noSpeechTimeoutRef.current = null;
-      }
-      
-      if (restartTimeoutRef.current) {
-        clearTimeout(restartTimeoutRef.current);
-        restartTimeoutRef.current = null;
-      }
-      
-      if (callEndedTimeoutRef.current) {
-        clearTimeout(callEndedTimeoutRef.current);
-        callEndedTimeoutRef.current = null;
-      }
-    }, []);
-    
-    // Function to stop recognition safely
-    const stopRecognition = useCallback(() => {
-      if (recognitionRef.current) {
-        try {
-          recognitionRef.current.stop();
-        } catch (err) {
-          // Ignore errors during cleanup
-          console.log('[WakeWordDetector] Error stopping recognition:', err);
-        }
-        recognitionRef.current = null;
-      }
-      isListeningRef.current = false;
-    }, []);
+    }, [toast, stopRecognition, clearAllTimeouts]);
     
     // Start/stop recognition based on detector state
     useEffect(() => {
@@ -204,7 +204,6 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           noSpeechTimeoutRef.current = null;
         }
       };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [detectorState, clearAllTimeouts, stopRecognition]);
     
     // Function to start a call
@@ -541,7 +540,7 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
     const getStatusText = (state: DetectorState): string => {
       switch (state) {
         case 'initializing': return 'Initializing...';
-        case 'listening': return 'Listening for "Hey Peter"';
+        case 'listening': return 'Listening for Hey Peter';
         case 'detected': return 'Wake word detected!';
         case 'calling': return 'In call';
         case 'error': return 'Error';

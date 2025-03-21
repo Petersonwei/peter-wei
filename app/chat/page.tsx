@@ -45,7 +45,7 @@ export default function ChatPage() {
             Peter Wei Voice Assistant
           </CardTitle>
           <CardDescription className="text-center text-primary-foreground/90 font-medium text-lg">
-            Say &quot;Hey Peter&quot; to start a conversation
+            Say <strong>Hey Peter</strong> to start a conversation
           </CardDescription>
         </CardHeader>
       </Card>
@@ -127,7 +127,7 @@ export default function ChatPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-1 text-green-500 flex-shrink-0" />
-                    <span>Say "Hey Peter" to start a new conversation</span>
+                    <span>Say <strong>Hey Peter</strong> to start a new conversation</span>
                   </li>
                 </ul>
               </div>

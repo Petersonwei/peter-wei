@@ -112,7 +112,7 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
       onMessagesUpdate(state.messages);
     }
   }, [state.messages, onMessagesUpdate]);
-
+  
   // Function to safely initialize the client if needed
   const ensureClientInitialized = useCallback(() => {
     if (!clientRef.current) {
@@ -188,6 +188,16 @@ const VoiceBot = forwardRef<VoiceBotRef, VoiceBotProps>(({ onCallStatusChange, o
       isEndingCallRef.current = false;
     }
   }, [updateState, ensureClientInitialized])
+  
+  // Effect to handle cleanup when component unmounts
+  useEffect(() => {
+    return () => {
+      // Call endCall on unmount to ensure proper cleanup
+      if (state.isCallActive) {
+        endCall();
+      }
+    };
+  }, [endCall, state.isCallActive]);
 
   // Handler to start a new call
   const startCall = useCallback(async () => {
