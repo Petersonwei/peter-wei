@@ -83,3 +83,26 @@ html, body {
 .wake-word-detector {
   @apply mb-6;
 }
+
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Mobile landscape mode optimizations */
+  .landscape-mode {
+    max-height: 85vh !important;
+    height: auto !important;
+  }
+  
+  .landscape-content {
+    padding: 0.5rem !important;
+  }
+  
+  .landscape-scrollarea {
+    min-height: 20vh !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  .landscape-text {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+}
