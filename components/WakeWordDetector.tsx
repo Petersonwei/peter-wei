@@ -386,8 +386,35 @@ const WakeWordDetector = forwardRef<WakeWordDetectorRef, WakeWordDetectorProps>(
           console.log('[WakeWordDetector] Heard:', transcript);
         }
         
-        // Check for wake word "Hey Peter"
-        if (transcript.includes('hey peter')) {
+        // More lenient wake word detection - check for partial matches
+        const detectWakeWord = (text: string) => {
+          // Check for exact matches first
+          if (text.includes('hey peter') || text.includes('hi peter')) {
+            return true;
+          }
+          
+          // Check for close variations (more permissive)
+          const peterVariations = ['peter', 'pete', 'peeta', 'peta', 'peder', 'pedr', 'pieter', 'peeter', 'petah', 'pita'];
+          const heyVariations = ['hey', 'hi', 'hay', 'hei', 'ay', 'hello', 'helo', 'heya', 'hiya', 'eh', 'ey'];
+          
+          // Check for any combination of hey/hi + peter variations
+          for (const hey of heyVariations) {
+            for (const peter of peterVariations) {
+              const phrase = `${hey} ${peter}`;
+              // Use a more lenient matching approach - if the text contains any parts of the wake phrase
+              if (text.includes(phrase) || 
+                  (text.includes(hey) && text.includes(peter)) || 
+                  text.includes(peter)) {
+                return true;
+              }
+            }
+          }
+          
+          return false;
+        };
+
+        // Check for wake word using the more lenient detection
+        if (detectWakeWord(transcript)) {
           console.log('[WakeWordDetector] Wake word detected:', transcript);
           
           // Set transitioning flag to prevent multiple detections
