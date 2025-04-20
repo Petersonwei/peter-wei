@@ -14,6 +14,8 @@ import {
 import { projects } from '@/data/projects'
 import { ProjectLinks } from '@/components/project-links'
 import ProjectFeatures from '@/components/ProjectFeatures'
+import { Markdown } from '@/components/ui/markdown'
+import { ImageGallery } from '@/components/ui/image-gallery'
 
 export default function ProjectPage() {
   // Get the route params using useParams hook
@@ -80,17 +82,21 @@ export default function ProjectPage() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Left Column: Info & Details */}
           <div className="md:col-span-2 space-y-8">
-            {/* Feature Image */}
-            <div className="relative h-[300px] md:h-[400px] w-full rounded-lg overflow-hidden shadow-md">
-              <Image
-                src={project.imageUrl || '/projects/placeholder.svg'}
-                alt={project.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 66vw"
-                priority
-              />
-            </div>
+            {/* Image Gallery (if available) or Feature Image */}
+            {project.gallery && project.gallery.length > 0 ? (
+              <ImageGallery images={[project.imageUrl, ...project.gallery]} />
+            ) : (
+              <div className="relative h-[300px] md:h-[400px] w-full rounded-lg overflow-hidden shadow-md">
+                <Image
+                  src={project.imageUrl || '/projects/placeholder.svg'}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                  priority
+                />
+              </div>
+            )}
             
             {/* Project Description */}
             <Card>
@@ -99,9 +105,13 @@ export default function ProjectPage() {
                   <Code className="h-6 w-6 text-primary" />
                   Project Overview
                 </h2>
-                <div className="prose dark:prose-invert max-w-none">
-                  <p className="text-lg leading-relaxed">{project.longDescription || project.description}</p>
-                </div>
+                {project.markdownContent ? (
+                  <Markdown content={project.markdownContent} />
+                ) : (
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p className="text-lg leading-relaxed">{project.longDescription || project.description}</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
             

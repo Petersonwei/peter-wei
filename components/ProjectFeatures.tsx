@@ -2,10 +2,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { CheckCircle2 } from 'lucide-react'
 
 interface ProjectFeaturesProps {
-  features: string[]
+  features?: string[]
 }
 
-export default function ProjectFeatures({ features }: ProjectFeaturesProps) {
+export default function ProjectFeatures({ features = [] }: ProjectFeaturesProps) {
+  if (features.length === 0) return null;
+  
   return (
     <Card>
       <CardContent className="p-6">

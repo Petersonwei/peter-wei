@@ -9,6 +9,8 @@ interface ProjectLinksProps {
 }
 
 export function ProjectLinks({ githubUrl, demoUrl }: ProjectLinksProps) {
+  if (!githubUrl && !demoUrl) return null;
+  
   return (
     <div className="flex gap-2 mt-4">
       {githubUrl && (

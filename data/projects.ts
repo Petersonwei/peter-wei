@@ -3,8 +3,10 @@ export interface Project {
   title: string;
   description: string;
   longDescription?: string;
+  markdownContent?: string;
   technologies: string[];
   imageUrl: string;
+  gallery?: string[];
   demoUrl?: string;
   githubUrl?: string;
   featured?: boolean;
@@ -18,8 +20,43 @@ export const projects: Project[] = [
     title: "Peter Wei Portfolio",
     description: "A modern portfolio website built with Next.js, React, and ShadCN UI, featuring a voice assistant interface.",
     longDescription: "This portfolio showcases my projects and skills in web development. It features a modern UI built with Next.js and Tailwind CSS, with a unique voice assistant that helps visitors navigate and learn about my work.",
+    markdownContent: `
+## Portfolio Website with Voice Assistant
+
+This portfolio showcases my projects and skills in web development. It features a modern UI built with Next.js and Tailwind CSS, with a unique voice assistant that helps visitors navigate and learn about my work.
+
+### Development Process
+
+I started by setting up a Next.js project with TypeScript for type safety. For styling, I chose Tailwind CSS along with the ShadCN UI component library to create a clean, responsive design that works well on all devices.
+
+The most challenging and interesting part was implementing the voice assistant feature. I used the Web Speech API for speech recognition and combined it with a custom natural language processing system to understand user queries.
+
+\`\`\`typescript
+// Example voice assistant code
+const handleVoiceCommand = (command: string) => {
+  if (command.includes('show projects')) {
+    router.push('/projects');
+  } else if (command.includes('about you')) {
+    router.push('/about');
+  }
+};
+\`\`\`
+
+### Key Technologies
+
+- **Next.js**: For server-side rendering and optimized performance
+- **TypeScript**: For type safety and better developer experience
+- **Tailwind CSS**: For responsive styling without writing custom CSS
+- **ShadCN UI**: For beautiful, accessible UI components
+- **Web Speech API**: For voice recognition capabilities
+    `,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "ShadCN UI", "Vercel"],
     imageUrl: "/projects/portfolio.jpg",
+    gallery: [
+      "/projects/portfolio-dark.jpg",
+      "/projects/portfolio-mobile.jpg",
+      "/projects/portfolio-voice.jpg"
+    ],
     demoUrl: "https://peterwei.dev",
     githubUrl: "https://github.com/peterwei/portfolio",
     featured: true,
@@ -55,6 +92,62 @@ export const projects: Project[] = [
     title: "AI Virtual Assistant",
     description: "A voice-enabled AI assistant that helps users find information and complete tasks.",
     longDescription: "Developed an AI assistant that uses natural language processing to understand user queries and provide helpful responses. The assistant can be used via voice commands or text input and can perform a variety of tasks.",
+    markdownContent: `
+## AI Virtual Assistant Project
+
+This project is a voice-enabled AI assistant that uses natural language processing to understand user queries and provide helpful responses. The assistant can be used via voice commands or text input and can perform a variety of tasks.
+
+### Technical Implementation
+
+The assistant is built on a foundation of several key technologies:
+
+- Voice recognition using the Web Speech API
+- Natural language understanding with OpenAI's GPT-4
+- Custom middleware for context management
+- React-based UI with real-time response rendering
+
+One of the biggest challenges was maintaining context between interactions. I solved this by implementing a custom context management system:
+
+\`\`\`javascript
+class ContextManager {
+  constructor() {
+    this.conversationHistory = [];
+    this.userPreferences = {};
+  }
+  
+  updateContext(message, response) {
+    this.conversationHistory.push({ message, response, timestamp: Date.now() });
+    
+    // Extract entities and intents
+    const entities = this.extractEntities(message);
+    const intent = this.classifyIntent(message);
+    
+    // Update user preferences based on interaction
+    if (intent === 'preference' && entities.length > 0) {
+      entities.forEach(entity => {
+        this.userPreferences[entity.type] = entity.value;
+      });
+    }
+    
+    return { entities, intent };
+  }
+  
+  // Additional methods...
+}
+\`\`\`
+
+### Features and Capabilities
+
+The assistant can perform a wide range of tasks:
+
+1. Answer general knowledge questions
+2. Provide weather updates for specified locations
+3. Set reminders and schedule events
+4. Control smart home devices
+5. Provide personalized recommendations
+
+All of these capabilities are enhanced by the assistant's ability to remember previous interactions and learn from user preferences over time.
+    `,
     technologies: ["Python", "TensorFlow", "React", "Web Speech API", "OpenAI API"],
     imageUrl: "/projects/ai-assistant.jpg",
     demoUrl: "https://assistant.peterwei.dev",
