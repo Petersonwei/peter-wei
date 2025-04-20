@@ -41,7 +41,7 @@ export function TopNav() {
             />
           </div>
           <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Parenta
+            Peter Wei Portfolio
           </span>
         </Link>
 

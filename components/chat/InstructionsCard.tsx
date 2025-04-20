@@ -1,12 +1,13 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { MicIcon, XIcon } from "@/components/icons/icons"
 
 export default function InstructionsCard() {
   return (
     <Card className="mb-4 sm:mb-6 shadow-md">
       <CardHeader className="pb-2 px-4 pt-4">
         <CardTitle className="text-xl font-bold">
-          Quick Guide - Triple P Voice Assistant
+          Quick Guide - Peter Wei Assistant
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4">
@@ -19,7 +20,14 @@ export default function InstructionsCard() {
               1
             </div>
             <div>
-              <p>Say <strong>Hi Anna</strong> to start</p>
+              <div className="flex items-center space-x-2 mb-3">
+                <div className="bg-primary/10 text-primary p-2 rounded-full">
+                  <MicIcon className="h-4 w-4" />
+                </div>
+                <div>
+                  <p>Say <strong>Hi Peter</strong> to start</p>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -43,13 +51,20 @@ export default function InstructionsCard() {
               3
             </div>
             <div>
-              <p>Say <strong>Goodbye Anna</strong> to end</p>
+              <div className="flex items-center space-x-2 mb-0">
+                <div className="bg-primary/10 text-primary p-2 rounded-full">
+                  <XIcon className="h-4 w-4" />
+                </div>
+                <div>
+                  <p>Say <strong>Goodbye Peter</strong> to end</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
         <div className="mt-4 text-center text-sm text-muted-foreground">
-          Our voice assistant is ready to answer questions about positive parenting strategies.
+          Our voice assistant is ready to answer questions about Peter Wei portfolio.
         </div>
       </CardContent>
     </Card>

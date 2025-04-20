@@ -3,15 +3,16 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MessageSquare } from 'lucide-react'
-import WakeWordDetector from '@/components/WakeWordDetector'
+import WakeWordDetector, { VoiceAssistantRef } from '@/components/WakeWordDetector'
 import TranscriptOverlay from '@/components/TranscriptOverlay'
 import { useState, useRef } from 'react'
 import { Message } from '@/components/chat/types'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isCallActive, setIsCallActive] = useState(false)
-  const wakeWordDetectorRef = useRef<{ endCall: () => Promise<void> } | null>(null)
+  const wakeWordDetectorRef = useRef<VoiceAssistantRef | null>(null)
 
   const handleCallStatusChange = (status: string) => {
     setIsCallActive(status === 'ongoing' || status === 'connecting')
@@ -37,10 +38,10 @@ export default function Home() {
     
     // Add an initial message to show in the overlay
     const initialMessage: Message = {
-      id: Date.now().toString(),
+      id: uuidv4(),
       type: 'transcription',
-      role: 'user',
-      content: "Starting conversation with Anna...",
+      role: 'system',
+      content: "Starting conversation with Peter...",
       timestamp: new Date()
     };
     setMessages([initialMessage]);
@@ -56,8 +57,8 @@ export default function Home() {
     <div className="h-full flex flex-col">
       {/* Hero Banner */}
       <div className="bg-blue-500 text-white text-center py-12 px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Parenta</h1>
-        <p className="text-xl">Your personal parenting counselor powered by AI</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Peter Wei Portfolio</h1>
+        <p className="text-xl">Your interactive portfolio explorer powered by AI</p>
       </div>
 
       <div className="max-w-5xl mx-auto w-full p-4 md:p-6 flex-1">
@@ -70,7 +71,7 @@ export default function Home() {
                 </div>
                 <h2 className="text-2xl font-bold mb-4">Voice Assistant</h2>
                 <p className="text-gray-600 mb-8 max-w-md">
-                  Talk to your AI assistant using voice commands. Just say Hi Anna to get started.
+                  Talk to your AI assistant using voice commands to learn more about Peter Wei portfolio. Just say Hi Peter to get started.
                 </p>
                 <Button 
                   size="lg" 
@@ -110,8 +111,8 @@ export default function Home() {
                   </div>
                   <h3 className="font-semibold text-lg">Say the wake word</h3>
                 </div>
-                <p className="text-gray-600">
-                  Activate the assistant by saying Hi Anna clearly.
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Activate the assistant by saying Hi Peter clearly.
                 </p>
               </CardContent>
             </Card>

@@ -7,11 +7,11 @@ export default function ChatHeader() {
       <CardHeader className="pb-2 sm:pb-4 px-4 sm:px-6 pt-4 sm:pt-6">
         <CardTitle className="text-xl sm:text-3xl font-bold text-center flex items-center justify-center gap-2">
           <Mic className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse" />
-          Triple P: Positive Parenting
+          Peter Wei Portfolio
         </CardTitle>
         <CardDescription className="text-center text-primary-foreground/90 font-medium text-base sm:text-lg">
           <span className="block mb-1">For parents seeking practical solutions</span>
-          Say <strong>Hi Anna</strong> to discover proven parenting strategies that work
+          Say <strong>Hi Peter</strong> to discover proven parenting strategies that work
         </CardDescription>
         <div className="mt-2 text-center text-primary-foreground/80 text-sm">
           <Users className="inline h-4 w-4 mr-1" /> Trusted by over 1 million families worldwide

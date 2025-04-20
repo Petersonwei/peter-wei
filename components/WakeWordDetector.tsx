@@ -34,7 +34,7 @@ export interface VoiceAssistantRef {
 }
 
 /**
- * VoiceAssistant - A component that handles voice calls with Anna
+ * VoiceAssistant - A component that handles voice calls with Peter
  * when activated by user interaction.
  * 
  * This component handles:

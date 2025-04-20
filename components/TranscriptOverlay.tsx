@@ -42,8 +42,8 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
       
       // Show toast when call starts
       toast({
-        title: "Anna is joining the chat",
-        description: "Please wait while the connection is established",
+        title: "Peter is joining the chat",
+        description: "Get ready to chat with Peter!",
       })
 
       // Set delay for end call button
@@ -79,7 +79,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
               </div>
               <div>
                 <h2 className="text-sm sm:text-xl font-semibold landscape:text-xs landscape:sm:text-sm landscape-text">
-                  {isPeterSpeaking ? "Anna is speaking..." : "Anna"}
+                  {isPeterSpeaking ? "Peter is speaking..." : "Peter"}
                 </h2>
                 {isPeterSpeaking && (
                   <p className="text-muted-foreground text-xs landscape:text-[10px] landscape-text">
@@ -120,7 +120,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
                     }`}>
                       <CardContent className="p-2 sm:p-3 landscape:p-1.5">
                         <p className="text-xs font-medium mb-1 opacity-70 landscape:text-[10px] landscape:mb-0.5 landscape-text">
-                          {message.role === 'user' ? 'You' : 'Anna'}
+                          {message.role === 'user' ? 'You' : 'Peter'}
                         </p>
                         <p className="text-xs sm:text-base leading-relaxed landscape:leading-snug landscape:text-xs landscape-text">{message.content}</p>
                       </CardContent>
@@ -131,7 +131,7 @@ export default function TranscriptOverlay({ messages, onEndCall, isCallActive }:
                 <div className="flex justify-center items-center h-full py-4">
                   <Card className="bg-background border-muted max-w-[90%]">
                     <CardContent className="p-3">
-                      <p className="text-center text-muted-foreground">Connecting to Anna...</p>
+                      <p className="text-center text-muted-foreground">Connecting to Peter...</p>
                     </CardContent>
                   </Card>
                 </div>
