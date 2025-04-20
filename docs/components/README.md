@@ -6,7 +6,8 @@ This document outlines the key components used in the Peter Wei Portfolio projec
 
 1. [Project Related Components](#project-related-components)
 2. [UI Components](#ui-components)
-3. [Voice Assistant Components](#voice-assistant-components)
+3. [Layout Components](#layout-components)
+4. [Voice Assistant Components](#voice-assistant-components)
 
 ## Project Related Components
 
@@ -95,6 +96,27 @@ The `ImageGallery` component displays a collection of images with navigation and
 ```
 
 [Detailed Documentation](./ImageGallery.md)
+
+## Layout Components
+
+### Footer
+
+The `Footer` component provides a consistent footer section across all pages of the portfolio site.
+
+**File**: `components/Footer.tsx`
+
+**Features**:
+- Responsive layout with social links
+- Quick navigation links
+- Resources section
+- Dynamic copyright year
+
+**Usage**:
+```tsx
+<Footer />
+```
+
+[Detailed Documentation](./Footer.md)
 
 ## Voice Assistant Components
 

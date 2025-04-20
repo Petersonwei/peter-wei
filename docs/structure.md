@@ -58,6 +58,7 @@ components/
 ├── ProjectCard.tsx         # Project card component
 ├── ProjectFeatures.tsx     # Project features component
 ├── TopNav.tsx              # Top navigation component
+├── Footer.tsx              # Footer component with links and copyright
 ├── VoiceBot.tsx            # Voice assistant bot
 ├── WakeWordDetector.tsx    # Voice assistant wake word detection
 ├── project-links.tsx       # Project links component
@@ -122,6 +123,7 @@ export interface Project {
 
 - **components/ProjectCard.tsx**: Renders a project card in either standard or featured mode.
 - **components/ProjectFeatures.tsx**: Displays a list of project features.
+- **components/Footer.tsx**: Responsive footer with social links, navigation, and copyright info.
 - **components/ui/image-gallery.tsx**: Interactive image gallery with thumbnails and fullscreen view.
 - **components/ui/markdown.tsx**: Custom markdown renderer.
 
@@ -156,6 +158,11 @@ The project uses a combination of:
 - ShadCN UI for component-based styling
 - Global CSS variables for theming
 - CSS modules for component-specific styling when needed
+
+### Key Styling Solutions
+
+- **Scrolling Management**: The app uses `overflow-x: hidden; overflow-y: auto;` on html and body elements to prevent horizontal scrolling while enabling vertical scrolling.
+- **Layout Structure**: The `AppLayout` component uses a flex column layout with `min-h-screen` to ensure proper content flow and footer positioning.
 
 ## Build and Deployment
 
