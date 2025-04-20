@@ -17,14 +17,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Peter Wei",
-  description: "AI-powered voice assistant with wake word detection",
+  title: "Triple P - Positive Parenting Program",
+  description: "Proven, positive tips that can help every family",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/Peter Wei Logo.png', type: 'image/png' },
+      { url: '/Triple P Logo.png', type: 'image/png' },
     ],
-    apple: '/Peter Wei Logo.png',
+    apple: '/Triple P Logo.png',
   },
 };
 
