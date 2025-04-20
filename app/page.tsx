@@ -8,6 +8,7 @@ import TranscriptOverlay from '@/components/TranscriptOverlay'
 import { useState, useRef } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
+import Link from 'next/link'
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -73,13 +74,23 @@ export default function Home() {
                 <p className="text-gray-600 mb-8 max-w-md">
                   Talk to your AI assistant using voice commands to learn more about Peter Wei portfolio. Just say Hi Peter to get started.
                 </p>
-                <Button 
-                  size="lg" 
-                  className="bg-black text-white hover:bg-gray-800"
-                  onClick={startConversation}
-                >
-                  Start Conversation
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-black text-white hover:bg-gray-800"
+                    onClick={startConversation}
+                  >
+                    Start Conversation
+                  </Button>
+                  <Link href="/projects">
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                    >
+                      View Projects
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </CardContent>
           </Card>

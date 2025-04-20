@@ -15,6 +15,14 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
+        // Project badge variants
+        featured: "border-transparent bg-amber-500 text-black shadow hover:bg-amber-400",
+        ai: "border-transparent bg-purple-600 text-white shadow hover:bg-purple-500",
+        "full-stack": "border-transparent bg-blue-600 text-white shadow hover:bg-blue-500",
+        "machine-learning": "border-transparent bg-green-600 text-white shadow hover:bg-green-500",
+        "data-visualization": "border-transparent bg-cyan-600 text-white shadow hover:bg-cyan-500",
+        mobile: "border-transparent bg-orange-600 text-white shadow hover:bg-orange-500",
+        "game-dev": "border-transparent bg-red-600 text-white shadow hover:bg-red-500",
       },
     },
     defaultVariants: {
