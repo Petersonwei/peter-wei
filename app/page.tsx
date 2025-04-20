@@ -9,6 +9,7 @@ import { useState, useRef } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
 import Link from 'next/link'
+import LogoAnimation from '@/components/LogoAnimation'
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -58,11 +59,16 @@ export default function Home() {
     <div className="h-full flex flex-col">
       {/* Hero Banner */}
       <div className="bg-blue-500 text-white text-center py-12 px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Peter Wei Portfolio</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
         <p className="text-xl">Your interactive portfolio explorer powered by AI</p>
       </div>
 
       <div className="max-w-5xl mx-auto w-full p-4 md:p-6 flex-1">
+        {/* Company Experience Animation */}
+        <div className="mt-8 mb-8">
+          <LogoAnimation />
+        </div>
+        
         <div className="mt-10 mb-16">
           <Card className="shadow-lg border rounded-lg overflow-hidden">
             <CardContent className="p-0">
