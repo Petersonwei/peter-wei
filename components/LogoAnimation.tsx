@@ -10,7 +10,6 @@ const COMPANIES = [
   { name: 'Dribag', logo: '/logos/dribag.png' },
   { name: 'Easy Skill', logo: '/logos/easy-skill.png' },
   { name: 'Vexit', logo: '/logos/vexit.png' },
-  // Additional logos from the logos folder
   { name: 'ACF', logo: '/logos/ACF_logo.png' },
   { name: 'ACS', logo: '/logos/ACS_Logo.webp' },
   { name: 'UQ', logo: '/logos/UQ_logo.png' },

@@ -2,10 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { MessageSquare } from 'lucide-react'
+import { Mic, Headphones, ArrowRight } from 'lucide-react'
 import WakeWordDetector, { VoiceAssistantRef } from '@/components/WakeWordDetector'
 import TranscriptOverlay from '@/components/TranscriptOverlay'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
 import Link from 'next/link'
@@ -14,7 +14,20 @@ import LogoAnimation from '@/components/LogoAnimation'
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isCallActive, setIsCallActive] = useState(false)
+  const [isPulsing, setIsPulsing] = useState(false)
   const wakeWordDetectorRef = useRef<VoiceAssistantRef | null>(null)
+
+  // Start pulsing animation every 5 seconds to draw attention to chat button
+  useEffect(() => {
+    if (!isCallActive) {
+      const interval = setInterval(() => {
+        setIsPulsing(true);
+        setTimeout(() => setIsPulsing(false), 1000);
+      }, 5000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [isCallActive]);
 
   const handleCallStatusChange = (status: string) => {
     setIsCallActive(status === 'ongoing' || status === 'connecting')
@@ -57,93 +70,108 @@ export default function Home() {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Hero Banner */}
-      <div className="bg-blue-500 text-white text-center py-12 px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
-        <p className="text-xl">Your interactive portfolio explorer powered by AI</p>
+      {/* Hero Banner with Integrated Chat */}
+      <div className="bg-primary text-primary-foreground py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div className="md:w-1/2">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
+              <p className="text-xl mb-6">Your interactive portfolio explorer powered by AI</p>
+              
+              <div className="flex flex-wrap gap-4 mt-6">
+                <Link href="/projects">
+                  <Button 
+                    size="lg" 
+                    variant="secondary"
+                    className="font-semibold"
+                  >
+                    View Projects
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            <div className="md:w-1/2">
+              <Card className="shadow-xl border-0 overflow-hidden bg-card/90 backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-4 relative">
+                      <div className={`bg-primary/20 p-4 rounded-full ${isPulsing ? 'animate-pulse' : ''}`}>
+                        <Headphones className="h-8 w-8 text-primary" />
+                      </div>
+                      {isPulsing && (
+                        <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-30"></div>
+                      )}
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3 text-card-foreground">Chat with Peter&apos;s AI Assistant</h2>
+                    <p className="text-muted-foreground mb-6">
+                      Get instant answers about my skills, experience, and projects. Ask me anything!
+                    </p>
+                    <Button 
+                      size="lg" 
+                      onClick={startConversation}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-6 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                    >
+                      <Mic className="h-5 w-5" />
+                      Start Talking Now
+                      <ArrowRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="max-w-5xl mx-auto w-full p-4 md:p-6 flex-1">
         {/* Company Experience Animation */}
-        <div className="mt-8 mb-8">
+        <div className="mt-8 mb-12">
           <LogoAnimation />
-        </div>
-        
-        <div className="mt-10 mb-16">
-          <Card className="shadow-lg border rounded-lg overflow-hidden">
-            <CardContent className="p-0">
-              <div className="flex flex-col items-center py-12 px-6 text-center">
-                <div className="bg-blue-100 p-5 rounded-full mb-6">
-                  <MessageSquare className="h-10 w-10 text-blue-500" />
-                </div>
-                <h2 className="text-2xl font-bold mb-4">Voice Assistant</h2>
-                <p className="text-gray-600 mb-8 max-w-md">
-                  Talk to your AI assistant using voice commands to learn more about Peter Wei portfolio. Just say Hi Peter to get started.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    size="lg" 
-                    className="bg-black text-white hover:bg-gray-800"
-                    onClick={startConversation}
-                  >
-                    Start Conversation
-                  </Button>
-                  <Link href="/projects">
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                    >
-                      View Projects
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Getting Started Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Getting Started</h2>
+          <h2 className="text-2xl font-bold mb-6">How to Use the Voice Assistant</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
+            <Card className="border shadow-md hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold">1</span>
+                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                    <span className="font-semibold text-primary">1</span>
                   </div>
-                  <h3 className="font-semibold text-lg">Allow microphone access</h3>
+                  <h3 className="font-semibold text-lg">Click the button above</h3>
                 </div>
-                <p className="text-gray-600">
-                  When prompted, allow the browser to access your microphone.
+                <p className="text-muted-foreground">
+                  Start the conversation with one click and allow microphone access when prompted.
                 </p>
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border shadow-md hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold">2</span>
+                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                    <span className="font-semibold text-primary">2</span>
                   </div>
-                  <h3 className="font-semibold text-lg">Say the wake word</h3>
+                  <h3 className="font-semibold text-lg">Ask anything</h3>
                 </div>
-                <p className="mb-4 text-sm text-muted-foreground">
-                  Activate the assistant by saying Hi Peter clearly.
+                <p className="text-muted-foreground">
+                  Ask about my skills, experience, projects, or anything else you&apos;d like to know.
                 </p>
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border shadow-md hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="bg-blue-100 w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold">3</span>
+                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                    <span className="font-semibold text-primary">3</span>
                   </div>
-                  <h3 className="font-semibold text-lg">Have a conversation</h3>
+                  <h3 className="font-semibold text-lg">Get instant answers</h3>
                 </div>
-                <p className="text-gray-600">
-                  Once connected, speak naturally with your AI assistant.
+                <p className="text-muted-foreground">
+                  Receive immediate responses to all your questions about my portfolio and experience.
                 </p>
               </CardContent>
             </Card>
