@@ -1,129 +1,185 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
-// List of company logos to display (doubled to create a smoother loop)
+// List of company logos to display from all available logos
 const COMPANIES = [
-  { name: 'Microsoft', logo: '/projects/microsoft.svg', url: 'https://microsoft.com' },
-  { name: 'Google', logo: '/projects/google.svg', url: 'https://google.com' },
-  { name: 'Amazon', logo: '/projects/amazon.svg', url: 'https://amazon.com' },
-  { name: 'Apple', logo: '/projects/apple.svg', url: 'https://apple.com' },
-  { name: 'Meta', logo: '/projects/meta.svg', url: 'https://meta.com' },
-  { name: 'Tesla', logo: '/projects/tesla.svg', url: 'https://tesla.com' },
-  // Repeat to make the animation smoother
-  { name: 'Microsoft', logo: '/projects/microsoft.svg', url: 'https://microsoft.com' },
-  { name: 'Google', logo: '/projects/google.svg', url: 'https://google.com' },
-  { name: 'Amazon', logo: '/projects/amazon.svg', url: 'https://amazon.com' },
-  { name: 'Apple', logo: '/projects/apple.svg', url: 'https://apple.com' },
-  { name: 'Meta', logo: '/projects/meta.svg', url: 'https://meta.com' },
-  { name: 'Tesla', logo: '/projects/tesla.svg', url: 'https://tesla.com' },
+  // Original company logos
+  { name: 'Axcharge', logo: '/logos/axcharge.png' },
+  { name: 'Dribag', logo: '/logos/dribag.png' },
+  { name: 'Easy Skill', logo: '/logos/easy-skill.png' },
+  { name: 'Vexit', logo: '/logos/vexit.png' },
+  // Additional logos from the logos folder
+  { name: 'ACF', logo: '/logos/ACF_logo.png' },
+  { name: 'ACS', logo: '/logos/ACS_Logo.webp' },
+  { name: 'UQ', logo: '/logos/UQ_logo.png' },
+  { name: 'Project Tyra', logo: '/logos/projecttyra_logo.jpeg' },
+  { name: 'TEDxUQ', logo: '/logos/TEDxUQ_Logo.png' },
+  { name: 'Rotary Brisbane', logo: '/logos/rotary_brisbane_logo.png' },
+  { name: 'Rotary International', logo: '/logos/rotary_international_logo.png' },
 ]
 
+// Create a large array of items for a true infinite loop
+// We duplicate it 3 times to ensure there are plenty of logos for any screen size
+const CAROUSEL_ITEMS = [...COMPANIES, ...COMPANIES, ...COMPANIES]
+
 export default function LogoAnimation() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const [isGrabbing, setIsGrabbing] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [isPaused, setIsPaused] = useState(false)
-  
-  // Initialize scroll position tracking
-  const scrollPositionRef = useRef({ 
-    startX: 0, 
-    scrollLeft: 0, 
-    isScrolling: false 
-  })
+  const [isDragging, setIsDragging] = useState(false)
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const animationRef = useRef<number | null>(null)
 
-  // Pause animation when user interacts
-  useEffect(() => {
-    const carousel = carouselRef.current
-    if (!carousel) return
-    
-    carousel.style.animationPlayState = isPaused ? 'paused' : 'running'
-  }, [isPaused])
-
-  // Handle mouse events for manual scrolling
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!carouselRef.current) return
-    
+  // Handle mouse down event - start dragging
+  const handleMouseDown = () => {
     setIsPaused(true)
-    setIsGrabbing(true)
+    setIsDragging(true)
     
-    const { scrollLeft } = carouselRef.current
-    scrollPositionRef.current = {
-      startX: e.clientX,
-      scrollLeft,
-      isScrolling: true
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current)
     }
   }
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!scrollPositionRef.current.isScrolling || !carouselRef.current) return
-    
-    const dx = e.clientX - scrollPositionRef.current.startX
-    carouselRef.current.scrollLeft = scrollPositionRef.current.scrollLeft - dx
-  }
-
+  // Handle mouse up event - stop dragging and set timer to resume animation
   const handleMouseUp = () => {
-    scrollPositionRef.current.isScrolling = false
-    setIsGrabbing(false)
+    setIsDragging(false)
     
-    // Resume animation after 2 seconds of inactivity
-    setTimeout(() => setIsPaused(false), 2000)
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false)
+    }, 2000) // Resume animation after 2 seconds of inactivity
   }
 
-  // Handle mouse leave to prevent stuck grabbing state
+  // Handle mouse leave - ensure we don't get stuck in dragging state
   const handleMouseLeave = () => {
-    if (scrollPositionRef.current.isScrolling) {
-      handleMouseUp()
+    if (isDragging) {
+      setIsDragging(false)
+      
+      resumeTimeoutRef.current = setTimeout(() => {
+        setIsPaused(false)
+      }, 2000)
     }
   }
 
-  // Grab the right cursor style
-  const cursorStyle = isGrabbing ? 'cursor-grabbing' : 'cursor-grab'
+  // Custom animation loop to ensure infinite scrolling
+  useEffect(() => {
+    // Implement a true infinite scrolling effect
+    const handleScroll = () => {
+      const container = scrollRef.current;
+      if (!container || isPaused) return;
+      
+      // Get half of the total scroll width
+      const halfScrollWidth = container.scrollWidth / 2;
+      
+      // If we've scrolled past the halfway point, reset to the start
+      // This creates the illusion of infinite scrolling
+      if (container.scrollLeft >= halfScrollWidth) {
+        container.scrollLeft = 0;
+      } else {
+        // Otherwise continue scrolling
+        container.scrollLeft += 1.5; // Slightly faster scrolling
+      }
+      
+      // Continue the animation
+      animationRef.current = requestAnimationFrame(handleScroll);
+    };
+    
+    // Start the animation if not paused
+    if (!isPaused) {
+      animationRef.current = requestAnimationFrame(handleScroll);
+    }
+    
+    // Clean up
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused]);
+
+  // Cleanup timeout and animation on unmount
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current)
+      }
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [])
+
+  // Generate a domain from company name
+  const getDomain = (name: string) => {
+    const lowercaseName = name.toLowerCase().replace(/\s+/g, '')
+    
+    // Map specific domains for entities that might not follow the standard pattern
+    if (name === 'UQ') return 'uq.edu.au'
+    if (name === 'TEDxUQ') return 'tedxuq.com'
+    if (name === 'ACF') return 'acf.org'
+    if (name === 'ACS') return 'acs.org.au'
+    if (name === 'Project Tyra') return 'projecttyra.com'
+    if (name === 'Rotary Brisbane') return 'rotarybrisbanecbd.com'
+    if (name === 'Rotary International') return 'rotary.org'
+    
+    // Default domain pattern
+    return `${lowercaseName}.com`
+  }
 
   return (
-    <div className="w-full my-6 overflow-hidden py-6" ref={containerRef}>
-      <div className="flex flex-col items-center">
-        <h3 className="text-xl font-semibold mb-4">I worked for</h3>
-        
-        {/* Use a container with horizontal scrolling */}
+    <div className="flex flex-col items-center w-full my-8">
+      <h3 className="text-xl md:text-2xl font-semibold mb-4">I worked for</h3>
+      
+      <div className="w-full overflow-hidden bg-card rounded-lg border">
+        {/* Carousel container */}
         <div 
-          className={`w-full overflow-x-auto scrollbar-hide ${cursorStyle}`}
+          ref={scrollRef}
+          className="
+            flex gap-16 py-6 px-4 
+            scrollbar-hide
+            cursor-grab overflow-x-auto
+            whitespace-nowrap
+            bg-background/50
+          "
+          style={{ 
+            width: '100vw',
+            marginLeft: 'calc(-50vw + 50%)',
+            paddingLeft: 'calc(50vw - 50% + 2rem)',
+            paddingRight: 'calc(50vw - 50% + 2rem)',
+          }}
           onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
         >
-          <div 
-            ref={carouselRef}
-            className="logo-track flex items-center animate-carousel min-w-max"
-            style={{ pointerEvents: isPaused ? 'all' : 'none' }}
-          >
-            {COMPANIES.map((company, index) => (
-              <Link 
-                key={`${company.name}-${index}`}
-                href={company.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 mx-10 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:drop-shadow-md"
-                title={`Visit ${company.name}`}
-                onClick={(e) => isPaused ? null : e.preventDefault()}
-              >
+          {CAROUSEL_ITEMS.map((company, index) => (
+            <a 
+              key={`${company.name}-${index}`}
+              href={`https://www.${getDomain(company.name)}`} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 transition-all duration-300 hover:scale-110 hover:shadow-md rounded-lg p-3 bg-card hover:bg-card/80"
+              title={`Visit ${company.name}`}
+              onClick={(e) => {
+                if (isDragging) {
+                  e.preventDefault(); // Prevent navigation if dragging
+                }
+              }}
+            >
+              <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex items-center justify-center">
                 <Image
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  width={70}
-                  height={70}
+                  width={120}
+                  height={120}
                   className="object-contain"
-                  onError={(e) => {
-                    e.currentTarget.src = '/Peter Wei Logo.png'
-                  }}
-                  draggable={false}
+                  draggable="false" // Prevent image dragging
+                  priority={index < 8} // Prioritize loading first visible images
                 />
-              </Link>
-            ))}
-          </div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </div>

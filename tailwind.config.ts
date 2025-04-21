@@ -85,7 +85,7 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'carousel': 'carousel 30s linear infinite'
+  			'carousel': 'carousel 15s linear infinite'
   		}
   	}
   },
