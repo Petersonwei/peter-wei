@@ -17,14 +17,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Triple P - Positive Parenting Program",
-  description: "Proven, positive tips that can help every family",
+  title: "Peter Wei - Portfolio",
+  description: "Peter Wei's personal portfolio website featuring projects, skills and experience",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/Triple P Logo.png', type: 'image/png' },
+      { url: '/Peter Wei Logo.png', type: 'image/png' },
     ],
-    apple: '/Triple P Logo.png',
+    apple: '/Peter Wei Logo.png',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Peter Wei',
+    title: 'Peter Wei - Portfolio',
+    description: 'Peter Wei Portfolio Website',
+    images: [
+      { url: '/Peter Wei Logo.png', type: 'image/png' },
+    ],
+    apple: '/Peter Wei Logo.png',
   },
 };
 

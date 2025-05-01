@@ -31,14 +31,14 @@ export function TopNav() {
         <Link href="/" className="flex items-center space-x-4">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm"></div>
-            <Image 
-              src="/Triple P Logo.png" 
-              alt="Triple P Logo" 
-              width={40} 
-              height={40} 
-              className="rounded-full relative"
-              priority
-            />
+            <div className="relative h-8 w-8 shrink-0">
+              <Image
+                src="/Peter Wei Logo.png"
+                alt="Peter Wei Logo"
+                className="h-full w-full rounded-sm object-cover object-center"
+                fill
+              />
+            </div>
           </div>
           <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Peter Wei Portfolio

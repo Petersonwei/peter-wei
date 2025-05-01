@@ -16,16 +16,16 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
     <div className="h-full w-[220px] bg-card border-r border-border flex flex-col">
       {/* Logo */}
       <Card className="m-4 p-4 border-none shadow-none">
-        <div className="flex flex-col items-center">
-          <Image 
-            src="/Triple P Logo.png" 
-            alt="Triple P Logo" 
-            width={150} 
-            height={150} 
-            className="mb-3"
-            priority
-          />
-          <h1 className="text-xl font-bold text-primary">Voice AI</h1>
+        <div className="flex items-center">
+          <div className="relative h-8 w-8 shrink-0 mr-2">
+            <Image
+              src="/Peter Wei Logo.png"
+              alt="Peter Wei Logo"
+              className="h-full w-full rounded-sm object-cover object-center"
+              fill
+            />
+          </div>
+          <span className="font-bold text-lg">Peter Wei</span>
         </div>
       </Card>
       
