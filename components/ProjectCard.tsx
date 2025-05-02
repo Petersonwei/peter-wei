@@ -1,12 +1,10 @@
 'use client'
 
 import { Project } from '@/data/projects'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Calendar, Building, Sparkles } from "lucide-react"
+import { Calendar, Building, Code } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 interface ProjectCardProps {
   project: Project
@@ -52,24 +50,29 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* What */}
         <div>
           <h3 className="text-sm font-medium mb-1 text-muted-foreground">What</h3>
-          <p className="text-sm line-clamp-3">{project.role}</p>
+          <p className="text-sm">{project.role}</p>
         </div>
         
         {/* Result */}
         <div>
           <h3 className="text-sm font-medium mb-1 text-muted-foreground">Result</h3>
-          <p className="text-sm line-clamp-3">{project.result}</p>
+          <p className="text-sm">{project.result}</p>
+        </div>
+        
+        {/* Technologies */}
+        <div>
+          <h3 className="text-sm font-medium mb-1 text-muted-foreground flex items-center">
+            <Code className="mr-1 h-3 w-3" /> Technologies
+          </h3>
+          <div className="flex flex-wrap gap-1 mt-1">
+            {project.technologies.map(tech => (
+              <Badge key={tech} variant="outline" className="text-xs">
+                {tech}
+              </Badge>
+            ))}
+          </div>
         </div>
       </CardContent>
-      
-      <CardFooter className="pt-2">
-        <Link href={`/projects/${project.id}`} className="w-full">
-          <Button variant="secondary" className="w-full">
-            View Case Study
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </CardFooter>
     </Card>
   )
 } 
