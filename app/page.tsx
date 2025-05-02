@@ -9,6 +9,9 @@ import { useState, useRef, useEffect } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
 import LogoAnimation from '@/components/LogoAnimation'
+import ProjectsList from '@/components/ProjectsList'
+import { projects } from '@/data/projects'
+import Link from 'next/link'
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -76,6 +79,18 @@ export default function Home() {
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
               <p className="text-xl mb-6">Your interactive portfolio explorer powered by AI</p>
+              
+              <div className="flex flex-wrap gap-4 mt-6">
+                <Link href="/projects">
+                  <Button 
+                    size="lg" 
+                    variant="secondary"
+                    className="font-semibold"
+                  >
+                    View Projects
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             <div className="md:w-1/2">
@@ -117,53 +132,13 @@ export default function Home() {
           <LogoAnimation />
         </div>
 
-        {/* Getting Started Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">How to Use the Voice Assistant</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="border shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold text-primary">1</span>
-                  </div>
-                  <h3 className="font-semibold text-lg">Click the button above</h3>
-                </div>
-                <p className="text-muted-foreground">
-                  Start the conversation with one click and allow microphone access when prompted.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold text-primary">2</span>
-                  </div>
-                  <h3 className="font-semibold text-lg">Ask anything</h3>
-                </div>
-                <p className="text-muted-foreground">
-                  Ask about my skills, experience, projects, or anything else you&apos;d like to know.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mr-3">
-                    <span className="font-semibold text-primary">3</span>
-                  </div>
-                  <h3 className="font-semibold text-lg">Get instant answers</h3>
-                </div>
-                <p className="text-muted-foreground">
-                  Receive immediate responses to all your questions about my portfolio and experience.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        {/* Featured Projects Section */}
+        <ProjectsList 
+          projects={projects.filter(p => p.featured)} 
+          limit={3}
+          showViewAll={true}
+          title="My Recent Projects"
+        />
       </div>
 
       {/* Keep the functionality components hidden */}
