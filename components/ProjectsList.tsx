@@ -26,7 +26,7 @@ export default function ProjectsList({
   
   return (
     <section className={cn("py-8", className)}>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
         
         {showViewAll && (
@@ -39,14 +39,16 @@ export default function ProjectsList({
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {displayedProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <div key={project.id} className="h-full flex">
+            <ProjectCard project={project} />
+          </div>
         ))}
       </div>
       
       {showViewAll && projects.length > limit && (
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link href="/projects">
             <Button variant="outline" size="lg">
               View All Projects

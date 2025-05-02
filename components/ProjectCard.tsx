@@ -12,8 +12,8 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden h-full flex flex-col">
-      <div className="relative h-48 w-full">
+    <Card className="overflow-hidden h-full min-h-[600px] flex flex-col">
+      <div className="relative h-52 w-full">
         <Image
           src={project.imageUrl}
           alt={`${project.title} thumbnail`}
@@ -28,21 +28,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
       
-      <CardHeader>
-        <CardTitle className="line-clamp-1">{project.title}</CardTitle>
+      <CardHeader className="pb-2">
+        <CardTitle className="line-clamp-2 min-h-[3rem]">{project.title}</CardTitle>
         <p className="text-sm text-muted-foreground flex items-center">
           <Calendar className="inline mr-1 h-4 w-4" /> {project.date}
         </p>
       </CardHeader>
       
-      <CardContent className="space-y-4 flex-grow">
+      <CardContent className="space-y-4 flex-grow overflow-y-auto">
         {/* Who */}
         {project.client && (
           <div>
             <h3 className="text-sm font-medium mb-1 text-muted-foreground">Who</h3>
             <p className="flex items-center">
-              <Building className="mr-2 h-4 w-4 inline text-primary" />
-              <span>{project.client}</span>
+              <Building className="mr-2 h-4 w-4 inline text-primary flex-shrink-0" />
+              <span className="line-clamp-2">{project.client}</span>
             </p>
           </div>
         )}
@@ -50,13 +50,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* What */}
         <div>
           <h3 className="text-sm font-medium mb-1 text-muted-foreground">What</h3>
-          <p className="text-sm">{project.role}</p>
+          <p className="text-sm line-clamp-3">{project.role}</p>
         </div>
         
         {/* Result */}
         <div>
           <h3 className="text-sm font-medium mb-1 text-muted-foreground">Result</h3>
-          <p className="text-sm">{project.result}</p>
+          <p className="text-sm line-clamp-3">{project.result}</p>
         </div>
         
         {/* Technologies */}
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </h3>
           <div className="flex flex-wrap gap-1 mt-1">
             {project.technologies.map(tech => (
-              <Badge key={tech} variant="outline" className="text-xs">
+              <Badge key={tech} variant="outline" className="text-xs mb-1">
                 {tech}
               </Badge>
             ))}
