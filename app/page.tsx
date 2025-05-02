@@ -78,8 +78,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
-              <p className="text-xl mb-6">Your interactive portfolio explorer powered by AI</p>
-              
+              <p className="text-xl mb-6">Hi, I'm Peter. I build scalable apps & automate workflows to align tech & business teams.</p>
               <div className="flex flex-wrap gap-4 mt-6">
                 <Link href="/projects">
                   <Button 
