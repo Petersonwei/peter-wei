@@ -18,12 +18,12 @@ export default function Sidebar({ activeTab, onTabChange }: SidebarProps) {
       <Card className="m-4 p-4 border-none shadow-none">
         <div className="flex items-center">
           <div className="relative h-8 w-8 shrink-0 mr-2">
-            <Image
+          <Image 
               src="/Peter Wei Logo.png"
               alt="Peter Wei Logo"
               className="h-full w-full rounded-sm object-cover object-center"
               fill
-            />
+          />
           </div>
           <span className="font-bold text-lg">Peter Wei</span>
         </div>

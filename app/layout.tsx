@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     images: [
       { url: '/Peter Wei Logo.png', type: 'image/png' },
     ],
-    apple: '/Peter Wei Logo.png',
   },
 };
 

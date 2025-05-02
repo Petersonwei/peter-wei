@@ -19,7 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu, HelpCircle, Layers } from 'lucide-react'
+import { Menu, HelpCircle } from 'lucide-react'
 
 export function TopNav() {
   const pathname = usePathname()
@@ -32,12 +32,12 @@ export function TopNav() {
           <div className="relative">
             <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm"></div>
             <div className="relative h-8 w-8 shrink-0">
-              <Image
+            <Image 
                 src="/Peter Wei Logo.png"
                 alt="Peter Wei Logo"
                 className="h-full w-full rounded-sm object-cover object-center"
                 fill
-              />
+            />
             </div>
           </div>
           <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -49,19 +49,6 @@ export function TopNav() {
         <div className="hidden md:flex md:flex-1 md:justify-start md:ml-8">
           <NavigationMenu>
             <NavigationMenuList className="gap-2">
-              <NavigationMenuItem>
-                <Link href="/projects" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-all hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50",
-                      pathname === "/projects" && "bg-accent text-accent-foreground shadow-sm"
-                    )}
-                  >
-                    <Layers className="mr-2 h-4 w-4" />
-                    Projects
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/about" legacyBehavior passHref>
                   <NavigationMenuLink
@@ -102,18 +89,6 @@ export function TopNav() {
                 </SheetHeader>
                 <div className="mt-6">
                   <nav className="space-y-2">
-                    <Link href="/projects" legacyBehavior passHref>
-                      <Button
-                        variant={pathname === "/projects" ? "secondary" : "ghost"}
-                        className={cn(
-                          "w-full justify-start transition-all",
-                          pathname === "/projects" && "bg-secondary shadow-sm"
-                        )}
-                      >
-                        <Layers className="mr-2 h-4 w-4" />
-                        Projects
-                      </Button>
-                    </Link>
                     <Link href="/about" legacyBehavior passHref>
                       <Button
                         variant={pathname === "/about" ? "secondary" : "ghost"}

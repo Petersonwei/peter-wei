@@ -29,7 +29,7 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <div className="relative h-8 w-8 shrink-0">
-              <Image
+            <Image 
                 src="/Peter Wei Logo.png"
                 alt="Peter Wei Logo"
                 className="h-full w-full rounded-sm object-cover object-center"

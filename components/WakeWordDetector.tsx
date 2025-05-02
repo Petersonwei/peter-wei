@@ -136,7 +136,7 @@ const VoiceAssistant = forwardRef<VoiceAssistantRef, VoiceAssistantProps>(
         }, 2000);
       }
     }, [toast, safeApiCall]);
-    
+
     /**
      * Set up event listener for manual start via the Start Conversation button
      */
@@ -167,7 +167,7 @@ const VoiceAssistant = forwardRef<VoiceAssistantRef, VoiceAssistantProps>(
      */
     const handleCallEnd = () => {
       console.log('[VoiceAssistant] Call ended');
-      
+
       // Notify parent about call end
       onCallStatusChange?.('ended');
       onEndCall?.();
@@ -224,7 +224,7 @@ const VoiceAssistant = forwardRef<VoiceAssistantRef, VoiceAssistantProps>(
       endCall,
       startCall
     }), [endCall, startCall]);
-
+    
     /**
      * Render method
      */

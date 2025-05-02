@@ -8,7 +8,6 @@ import TranscriptOverlay from '@/components/TranscriptOverlay'
 import { useState, useRef, useEffect } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
-import Link from 'next/link'
 import LogoAnimation from '@/components/LogoAnimation'
 
 export default function Home() {
@@ -77,20 +76,8 @@ export default function Home() {
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Peter Wei Portfolio</h1>
               <p className="text-xl mb-6">Your interactive portfolio explorer powered by AI</p>
-              
-              <div className="flex flex-wrap gap-4 mt-6">
-                <Link href="/projects">
-                  <Button 
-                    size="lg" 
-                    variant="secondary"
-                    className="font-semibold"
-                  >
-                    View Projects
-                  </Button>
-                </Link>
-              </div>
             </div>
-            
+
             <div className="md:w-1/2">
               <Card className="shadow-xl border-0 overflow-hidden bg-card/90 backdrop-blur-sm">
                 <CardContent className="p-6">
@@ -102,24 +89,24 @@ export default function Home() {
                       {isPulsing && (
                         <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-30"></div>
                       )}
-                    </div>
+                </div>
                     <h2 className="text-2xl font-bold mb-3 text-card-foreground">Chat with Peter&apos;s AI Assistant</h2>
                     <p className="text-muted-foreground mb-6">
                       Get instant answers about my skills, experience, and projects. Ask me anything!
-                    </p>
-                    <Button 
-                      size="lg" 
-                      onClick={startConversation}
+                </p>
+                <Button 
+                  size="lg" 
+                  onClick={startConversation}
                       className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-6 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 flex items-center gap-2"
-                    >
+                >
                       <Mic className="h-5 w-5" />
                       Start Talking Now
                       <ArrowRight className="h-4 w-4 ml-1" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
           </div>
         </div>
       </div>
