@@ -8,10 +8,10 @@ import TranscriptOverlay from '@/components/TranscriptOverlay'
 import { useState, useRef, useEffect } from 'react'
 import { Message } from '@/components/chat/types'
 import { v4 as uuidv4 } from 'uuid'
+import Link from 'next/link'
 import LogoAnimation from '@/components/LogoAnimation'
 import ProjectsList from '@/components/ProjectsList'
 import { projects } from '@/data/projects'
-import Link from 'next/link'
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -90,8 +90,17 @@ export default function Home() {
                     View Projects
                   </Button>
                 </Link>
+                <Link href="/cv">
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="font-semibold bg-background/20 text-primary-foreground"
+                  >
+                    View CV
+                  </Button>
+                </Link>
               </div>
-            </div>
+      </div>
 
             <div className="md:w-1/2">
               <Card className="shadow-xl border-0 overflow-hidden bg-card/90 backdrop-blur-sm">
@@ -137,7 +146,6 @@ export default function Home() {
           projects={projects.filter(p => p.featured)} 
           limit={3}
           showViewAll={true}
-          title="My Recent Projects"
         />
       </div>
 
